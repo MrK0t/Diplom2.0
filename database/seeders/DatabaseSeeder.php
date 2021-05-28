@@ -37,6 +37,8 @@ class DatabaseSeeder extends Seeder
                 'roomTypeId' => random_int(1, 10),
                 'buildingId' => random_int(1, 3),
                 'roomNumber' => random_int(2, 4),
+                'image' => 'depositphotos_2232863-stock-photo-interior-of-a-hotel-room.jpg',
+                'description' => Str::random(101).'Room-description',
                 'isFree' => random_int(0, 1),
                 ]);
         }
