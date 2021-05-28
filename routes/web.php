@@ -19,5 +19,12 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::resource('/rooms', App\Http\Controllers\RoomController::class);
+Route::resource('/buildings', App\Http\Controllers\BuildingController::class);
+Route::resource('/orders', App\Http\Controllers\OrderController::class);
+Route::resource('/rooms/categories', App\Http\Controllers\RoomController::class);
+Route::resource('/rooms/types', App\Http\Controllers\RoomController::class);
+// Route::resource('/rooms/types', App\Http\Controllers\RoomController::class)->except(['destroy','store']);
+
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
