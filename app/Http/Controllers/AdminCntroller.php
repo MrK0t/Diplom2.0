@@ -13,7 +13,7 @@ class AdminCntroller extends Controller
      */
     public function index()
     {
-        //
+        return view('adminka');
     }
 
     /**

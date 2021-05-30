@@ -1,0 +1,443 @@
+p{
+    color: #292929;
+    font-family: "Noto Sans";
+    src: url("../Fonts/Noto_Sans.ttf"); 
+    font-size: 12pt;
+}
+
+h2{
+    color: #525252;
+    font-family: "Noto Sans";
+    src: url("../Fonts/Noto_Sans.ttf") format("truetype"); 
+}
+
+h3{
+    color: #525252;
+}
+
+body{
+    margin: 0%;
+}
+
+div#head{
+    padding-top: 30px;
+    margin-bottom: 0px;
+    background: linear-gradient(to bottom, rgba(11,21,168,1) 0%,
+        rgba(12,36,165,1) 10%,rgba(15,68,159,1) 32%, rgba(15,68,159,1) 62%, rgba(10,39,107,1) 100%);
+    width: 100%;
+    height: 100px;
+
+    font-family: Reem Kufi;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 288px;
+    line-height: 432px;
+    
+    font: 50px Arial;
+    color: #ffffff;
+    /* border-color: blue; 
+    border-style: solid; */
+    }
+img#Logo{
+    width: 250px;
+    height: 80px;
+    left: 380px;
+    top: 38px;
+
+    padding-left: 8%;
+}
+
+
+div.seach_main{
+    background-image: url("HeadBackMain.jpg");
+    background-size: cover;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+div.seach_user{
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn23.img.ria.ru%2Fimages%2F155019%2F73%2F1550197385_0%3A0%3A2000%3A1126_600x0_80_0_0_4194da72ab2bad81d40e94d6bcde28a8.jpg&f=1&nofb=1");
+    background-size: cover;
+    margin-top: 80px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+div.seach_cart{
+    background-image: url("https://www.bar-komplekt.ru/userfls/ufiles/stojka-resepshn.jpg");
+    background-size: cover;
+    margin-top: 80px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+div.seach_second{
+    background-color: rgba(180, 180, 180, 0.5) ;
+    padding-top: 10px;
+    padding-bottom: 10px;
+} 
+div.seach_border{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+} 
+div.seach_bblock{
+    align-items: center;
+} 
+/* SLIDER */
+/* ===================================================================== */
+.multi-range-slider{
+    align-items: center;
+    height: 50px;
+    width: 100%;
+
+    
+}
+input[type=range]{
+    display: flex;
+    position:relative;
+    pointer-events: none;
+    -webkit-appearance: none;
+    top: 10px;
+    width:100%;
+    z-index:2;
+    opacity: 0;
+}
+input[type=range]#input-right{
+    top:-10px;
+}
+input[type=range]::-webkit-slider-thumb{
+    pointer-events: all;
+    width:20px;
+    height:20px;
+    border-radius: 5;
+    border: 0 none;
+    background-color: blue;
+    -webkit-appearance: none;
+}
+
+
+
+.slider{
+    position:relative;
+    z-index: 1;
+    height: 8px;
+    width: 100%;
+    top: -24px;
+    /* margin-bottom:5px; */
+}
+.slider > .track{
+    position:absolute;
+    z-index: 1;
+    left: 0;
+    right:0;
+    top:0;
+    bottom: 0;
+    border-radius: 5px;
+    background-color: #ececec;
+}
+.slider > .range{
+    position :absolute;
+    z-index: 2;
+    left:23%;
+    right:23%;
+    top:0;
+    bottom:0;
+    border-radius: 5px;
+    background-color:rgb(0, 94, 255,1);
+}
+.slider > .thumb{
+    position :absolute;
+    z-index: 3;
+    width:15;
+    height: 15;
+    background-color: rgb(0, 94, 255,1);
+    border-radius: 50%;
+} 
+.slider > .thumb.left{
+    left: 23%;
+    transform: translate(0px, -4px);
+}
+.slider > .thumb.right{
+    right: 23%;
+    transform: translate(0px, -4px);
+}
+
+/* BODY */
+/*-------------------------------------------------------------- */
+
+div#info{
+    height: wrap content;
+    text-align: center;
+}
+div.body_main{
+    margin: 5% 15%;
+}
+.obj{
+    margin: 0 0;
+    overflow:hidden;
+    display: block;
+    z-index:1;
+}
+#obj{
+    margin: 0 0;
+}
+.card-img{
+    overflow:hidden;
+    display: block;
+    height: 600;
+    z-index:1;
+}
+
+.shadow{
+   /* display:flex; */
+   padding: 0 5%;
+   position: relative;
+   z-index: 2;
+   top:10%;
+   width:250%;
+   height: 50px;
+   background-color: rgba(126, 125, 125, 0.623) ;
+
+   width: wrap content; 
+}
+.shadow2{
+    display:flex;
+    position: relative;
+    z-index: 1;
+    top:-275px;
+    width:250%;
+    background-color: rgba(192, 192, 192, 0.623) ;
+ 
+    height: px;
+    width: wrap content; 
+ }
+.hotel_page_body{
+    margin: 0 10%;
+}
+
+ div.column{
+    margin: 0%;
+    margin-left: 15%;
+    padding: 0px;
+    margin-left: 100px;
+
+    width: 100px;
+    float: left;
+ }
+
+
+
+
+ ul.main{
+    font: 14px Verdana, Geneva, sans-serif;
+    text-align: center;
+}
+
+     li.main {
+            width: 18%;
+            height: 100px;
+            margin: 0% 5%;
+            display: inline-block;
+            text-align: center;
+            padding-bottom: 20px;
+            margin-top: 0;
+
+
+    }
+    ul li.helper {
+            width: 100%;
+            height: 0;
+            visibility: hidden;
+    }
+
+
+/* OTHER BLOCKS */
+/* ---------------------------------------------------------------- */
+/*  */
+/* ---------------------------------------------------------------- */
+
+
+
+div.default{
+   margin: 0px;
+   padding: 0px;
+
+   float: left;
+}
+
+div.column{
+    margin: 0%;
+    margin-left: 15%;
+    padding: 0px;
+    margin-left: 100px;
+
+    width: 100px;
+ 
+    float: left;
+ }
+
+div.center{
+    margin: 0px;
+    padding: 0px;
+    margin-left: 8%;
+    margin-right: 8%;
+    height: 100px;
+
+    text-align: center;
+ }
+
+
+#left{
+    /* margin-right: 50%; */
+    width: 50%;
+    float: left;
+
+    /* border-color: red; 
+    border-style: solid; */
+}
+
+#right{
+    margin-left: 60%;
+    margin-top: 18px;
+
+    /* border-color: red; 
+    border-style: solid; */
+    }
+/* ============================================================= */
+/* buttons */
+
+button.default{
+    color: white;
+    text-decoration: none;
+    height: 35px;
+    border-radius: 3px;
+    background: #c5c5c5;
+
+    transition: 0.2s;
+} 
+
+button.default:hover {
+    background: #adadad; 
+}
+
+button.default:active {
+    background: #999999; 
+}
+
+
+
+/* white */
+button#w{
+    color: #525252;
+    text-decoration: none;
+    height: 35px;
+    border-radius: 3px;
+    background: #ffffff;
+
+    transition: 0.2s;
+} 
+
+button.default:hover {
+    background: #ececec; 
+}
+
+button.default:active {
+    background: #d8d8d8; 
+}
+
+/* orange */
+#orange{
+    color: #ffffff;
+    text-decoration: none;
+    height: 35px;
+    border-radius: 3px;
+    background: #ff6a06;
+
+    transition: 0.2s;
+} 
+
+#org{
+    margin: 2% 2%;
+    color: #ffffff;
+    text-decoration: none;
+    height: 35px;
+    border-radius: 8px;
+    background: #ff6a06;
+
+    transition: 0.2s;
+} 
+
+button.default:hover {
+    background: #f7a167; 
+}
+
+button.default:active {
+    background: #855333; 
+}
+
+/*----------------------------------------------------------------*/
+/* input */
+
+input.default{
+    
+    border-color: var(--gray-lighter);
+    color: var(--gray);
+    height: 35px;
+}
+
+#inp{
+    margin: 0% 2%;
+}
+
+#rad{
+    border-radius: 5px;
+    margin: 2% 2%;
+    border-color: #FFF;
+}
+
+h3.center{
+    color: rgb(26, 26, 26);
+    text-align: center;
+}
+
+#w{
+    color: rgb(243, 243, 243);
+}
+
+p#w_b{
+    margin-left: 50px;
+    font-size: 20;
+    color: rgb(243, 243, 243);
+}
+
+/* TEXT */
+/* ----------------------------------------------------------------- */
+
+
+/* ============================================================== */
+/* Kostyli */
+
+div#k1{
+    width : 14%;
+    float: left;
+}
+div#k2{
+    padding-left: 10%;
+    width : 20%;
+    float: left;
+}
+div#k3{
+    padding-left: 16%;
+    width : 40%;
+    float: left;
+}
+#per{
+    width: 120px;
+    border-color: var(--gray-lighter);
+    color: var(--gray);
+    height: 35px;
+}
+
+a:visited{
+    color:#203C9E;
+    text-decoration: none;
+}

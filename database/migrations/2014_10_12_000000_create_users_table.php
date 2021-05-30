@@ -17,9 +17,11 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name', 31)->unique();
             $table->string('email', 51)->unique();
-            $table->string('fio', 301);
+            $table->string('firstName', 51);
+            $table->string('lastName', 51);
+            $table->string('patronimic', 51)->nullable();
             $table->string('password');
-            $table->boolean('isAdmin');
+            $table->boolean('isAdmin')->default(false);
 
             $table->rememberToken();
             $table->timestamps();

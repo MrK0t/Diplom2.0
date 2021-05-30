@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         {
             DB::table('buildings')->insert([
                 'name' => random_int(2, 4),
+                'address' => Str::random(51).'Street',
                 // 'email' => Str::random(10).'@gmail.com',
                 // 'password' => Hash::make('password'),
                 ]);
@@ -38,7 +39,8 @@ class DatabaseSeeder extends Seeder
                 'buildingId' => random_int(1, 3),
                 'roomNumber' => random_int(2, 4),
                 'image' => 'depositphotos_2232863-stock-photo-interior-of-a-hotel-room.jpg',
-                'description' => Str::random(101).'Room-description',
+                'price' => random_int(1500, 20000),
+                'description' => Str::random(51).'Room-description',
                 'isFree' => random_int(0, 1),
                 ]);
         }
@@ -64,17 +66,34 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        for($i = 0; $i < 3; $i++)
-        {
-            DB::table('users')->insert([
-                'name' => Str::random(21).'Usr-Name',
-                'email' => Str::random(21).'@gmail.com',
-                'fio' => Str::random(101).'Usr-FIO',
-                'password' => Hash::make('password'),
-                'isAdmin' => 0,
-                ]);
-        }
-
+        DB::table('users')->insert([
+            'name' => 'default-user1',
+            'email' => 'user1@user1.com',
+            'firstName' => 'user1-FN',
+            'lastName' => 'user1-LN',
+            'patronimic' => 'user1-Ptrn',
+            'password' => Hash::make('111'),
+            'isAdmin' => 0,
+        ]);
+        DB::table('users')->insert([
+            'name' => 'default-user2',
+            'email' => 'user2@user2.com',
+            'firstName' => 'user2-FN',
+            'lastName' => 'user2-LN',
+            'patronimic' => 'user2-Ptrn',
+            'password' => Hash::make('111'),
+            'isAdmin' => 0,
+        ]);
+        DB::table('users')->insert([
+            'name' => 'admin',
+            'email' => 'admin@admin.com',
+            'firstName' => 'admin-FN',
+            'lastName' => 'admin-LN',
+            'patronimic' => 'admin-Ptrn',
+            'password' => Hash::make('111'),
+            'isAdmin' => 1,
+        ]);
+        
         for($i = 1; $i <= 3; $i++)
         {
             DB::table('orders')->insert([

@@ -1,4 +1,33 @@
-<div class="py-3 mb-5 bg-dark">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@yield('title')</title>
+
+    
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="maincss2.0.css" rel="stylesheet">
+</head>
+    
+
+<body>
+<div class="py-3 bg-dark" style="margin-bottom: 80px;" >
     <div class="row text-light">
 
         <nav class="navbar navbar-expand-xl navbar-dark fixed-top bg-dark">
@@ -14,7 +43,7 @@
                 </li>
                 @auth
                     @if(Auth::User()->isAdmin === 1)
-                    <a class="nav-link text-light" href="{{ route('tasks')}}">Adminka</a>
+                    <a class="nav-link text-light" href="{{ route('adminka')}}">Adminka</a>
                     @endif
                     <a class="nav-link text-light" href="{{ route('profile')}}">Profile</a>
                 @endauth
@@ -36,3 +65,8 @@
         
     </div>
 </div>
+
+@yield('content')
+
+</body>
+</html>

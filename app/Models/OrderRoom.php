@@ -11,11 +11,11 @@ class OrderRoom extends Model
 
     public function order()
     {
-        return $this->belongsTo(Order::class, 'id', 'orderId');
+        return $this->belongsTo(Order::class, 'orderId', 'id');
     }
 
     public function room()
     {
-        return $this->belongsTo(Rooms::class, 'id', 'roomId');
+        return $this->belongsTo(Rooms::class, 'roomId', 'id');
     }
 }

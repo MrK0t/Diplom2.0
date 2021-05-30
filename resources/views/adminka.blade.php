@@ -1,5 +1,10 @@
 @extends('layouts.header')
 
+@section('title')
+adminka
+@endsection
+
+@section('content')
 <h1>ADMINKA</h1>
 
 <div class="container">
@@ -33,3 +38,5 @@
         </div>
     </div>
 </div>
+
+@endsection

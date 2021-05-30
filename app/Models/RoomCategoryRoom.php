@@ -11,10 +11,10 @@ class RoomCategoryRoom extends Model
 
     public function room()
     {
-        return $this->belongsTo(Room::class, 'id', 'roomsId');
+        return $this->belongsTo(Room::class, 'roomsId', 'id');
     }
     public function roomCategory()
     {
-        return $this->belongsTo(RoomCategory::class, 'id', 'roomCategoryId');
+        return $this->belongsTo(RoomCategory::class, 'roomCategoryId', 'id');
     }
 }

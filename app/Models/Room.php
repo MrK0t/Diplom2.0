@@ -11,11 +11,11 @@ class Room extends Model
 
     public function roomType()
     {
-        return $this->belongsTo(RoomType::class, 'id', 'roomTypeId	');
+        return $this->belongsTo(RoomTypes::class, 'roomTypeId', 'id');
     }
     public function building()
     {
-        return $this->belongsTo(Building::class, 'id', 'buildingId');
+        return $this->belongsTo(Building::class, 'buildingId', 'id');
     }
 
     public function roomCategoryRoom()
