@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use App\Models\RoomCategory;
+use App\Models\RoomCategoryRoom;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -47,8 +49,7 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        $room_data = Room::get();
-        return view('room');
+        
     }
 
     /**
@@ -59,7 +60,11 @@ class RoomController extends Controller
      */
     public function edit($id)
     {
-        //
+        $room_data = Room::where('id', $id)->get();
+        $category_data = RoomCategory::get();
+        $cur_category_data = RoomCategoryRoom::where('roomsId', $id)->get();
+
+        return view('adminka_edit_room', compact('room_data', 'category_data', 'cur_category_data'));
     }
 
     /**

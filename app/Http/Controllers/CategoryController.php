@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Building;
+use App\Http\Controllers\Controller;
+use App\Models\RoomCategory;
 use Illuminate\Http\Request;
 
-class BuildingController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class BuildingController extends Controller
      */
     public function index()
     {
-        $building_data = Building::get();
-        return view('adminka_buildings', compact('building_data'));
+        $category_data = RoomCategory::get();
+        return view('adminka_categories', compact('category_data'));
     }
 
     /**
@@ -70,7 +71,7 @@ class BuildingController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
+        //
     }
 
     /**

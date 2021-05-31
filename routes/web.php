@@ -19,17 +19,16 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::resource('/adminka', App\Http\Controllers\AdminCntroller::class);
 Route::resource('/rooms', App\Http\Controllers\RoomController::class);
-Route::resource('/buildings', App\Http\Controllers\BuildingController::class);
 Route::resource('/orders', App\Http\Controllers\OrderController::class);
-Route::resource('/rooms/categories', App\Http\Controllers\RoomController::class);
-Route::resource('/rooms/types', App\Http\Controllers\RoomController::class);
+Route::resource('/adminka/rooms', App\Http\Controllers\RoomController::class);
+Route::resource('/adminka/categories', App\Http\Controllers\CategoryController::class);
+Route::resource('/adminka/types', App\Http\Controllers\TypeController::class);
+Route::resource('/adminka/buildings', App\Http\Controllers\BuildingController::class);
 // Route::resource('/rooms/types', App\Http\Controllers\RoomController::class)->except(['destroy','store']);
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 Route::get('/profile', [App\Http\Controllers\OrderController::class, 'index'])->name('profile');
-Route::get('/adminka', [App\Http\Controllers\AdminCntroller::class, 'index'])->name('adminka');
 Route::get('/room', [App\Http\Controllers\RoomController::class, 'show'])->name('room');
-Route::get('/adminka_rooms', [App\Http\Controllers\RoomController::class, 'index'])->name('adminka_rooms');
+// Route::get('/adminka/types', [App\Http\Controllers\TypeController::class, 'index'])->name('adminka_types');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

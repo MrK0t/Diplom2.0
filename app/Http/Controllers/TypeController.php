@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Building;
+use App\Http\Controllers\Controller;
+use App\Models\RoomTypes;
 use Illuminate\Http\Request;
+use PHPUnit\Util\Type;
 
-class BuildingController extends Controller
+class TypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +16,8 @@ class BuildingController extends Controller
      */
     public function index()
     {
-        $building_data = Building::get();
-        return view('adminka_buildings', compact('building_data'));
+        $type_data = RoomTypes::get();
+        return view('adminka_types', compact('type_data'));
     }
 
     /**
@@ -70,7 +72,7 @@ class BuildingController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
+        //
     }
 
     /**

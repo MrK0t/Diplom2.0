@@ -10,6 +10,7 @@ profile
             <div class ="seach_second">
             <div class="seach_border text-light">
                 <div class="seach_block">
+                    
                     <!-- NAVBAR -->
                     <nav class="navbar  navbar-light ">
                         <div class="container-fluid">
@@ -18,11 +19,82 @@ profile
                                 <span class="bi bi-tools"></span>
                             </button>
                             
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <form class="d-flex">
-                                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                            <div class="collapse navbar-collapse my-3" id="navbarSupportedContent">
+                                <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
+                                    <input id="name" type="text" class="form-control my-1 @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Name">
+                                    <button class="btn btn-primary mx-2" type="submit">Edit</button>
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </form>
+                                <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
+                                    <input id="firstName" type="text" class="form-control my-1 @error('firstName') is-invalid @enderror" name="firstName" value="{{ old('firstName') }}" required autocomplete="firstName" placeholder="FirstName">
+                                    <button class="btn btn-primary mx-2" type="submit">Edit</button>
+                                    @error('firstName')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </form>
+                                <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
+                                    <input id="lastName" type="text" class="form-control my-1 @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName" placeholder="LastName">
+                                    <button class="btn btn-primary mx-2" type="submit">Edit</button>
+                                    @error('lastName')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </form>
+                                <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
+                                    <input id="patronimic" type="text" class="form-control my-1 @error('patronimic') is-invalid @enderror" name="patronimic" value="{{ old('patronimic') }}" required autocomplete="patronimic" placeholder="Patronimic">
+                                    <button class="btn btn-primary mx-2" type="submit">Edit</button>
+                                    @error('patronimic')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </form>
+
+                                <!-- edition email&pass -->
+                                    <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-5 col-sm-12">
+                                                <input id="email" type="email" class="form-control my-1 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
+                                                @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-5 col-sm-12">
+                                                <input id="email-confirm" type="email" class="form-control my-1" name="email_confirmation" required autocomplete="new-email" placeholder="Confirm email">
+                                            </div>
+                                            <div class="col-md-2 col-sm-12 my-1">
+                                                <button class="btn btn-primary" type="submit">Edit</button>
+                                            </div>
+                                        </div>
+                                    </form> 
+
+                                    <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-5 col-sm-12">
+                                                <input id="password" type="text" class="form-control my-1 @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password" placeholder="Password">
+                                                @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-5 col-sm-12">
+                                                <input id="password-confirm" type="password" class="form-control my-1" name="password-confirm" required autocomplete="new-password" placeholder="Confirm password">
+                                            </div>
+                                            <div class="col-md-2 col-sm-12 my-1">
+                                                <button class="btn btn-primary" type="submit">Edit</button>
+                                            </div>
+                                        </div>
+                                    </form> 
                             </div>   
                         </div>   
                     </nav>
@@ -59,175 +131,7 @@ profile
             </div>
         </div>
 <hr>    
-<div class="container mb-5">
-    <div class="row justify-content-center my-3">
-    <div class="col-md-8">
-        <div class="card">
-        <div class="card-header ">{{ __('Personal Data') }}
-        </div>
-        <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-                        <div class="form-group row">
-                            <label for="name" class="col-md-3 my-1 col-form-label text-md-right">{{ __('Name') }}</label>
-                            <div class="col-md-6 my-1">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-3 my-1">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Edit') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-                        <div class="form-group row">
-                            <label for="firstName" class="col-md-3 my-1 col-form-label text-md-right">{{ __('FirstName') }}</label>
-                            <div class="col-md-6 my-1">
-                                <input id="firstName" type="text" class="form-control @error('firstName') is-invalid @enderror" name="firstName" value="{{ old('firstName') }}" required autocomplete="firstName" autofocus>
-                                @error('firstName')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-3 my-1">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Edit') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-                        <div class="form-group row">
-                            <label for="lastName" class="col-md-3 my-1 col-form-label text-md-right">{{ __('LastName') }}</label>
-                            <div class="col-md-6 my-1">
-                                <input id="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName" autofocus>
-                                @error('lastName')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-3 my-1">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Edit') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-                        <div class="form-group row">
-                            <label for="patronimic" class="col-md-3 my-1 col-form-label text-md-right">{{ __('Patronimic') }}</label>
-                            <div class="col-md-6 my-1">
-                                <input id="patronimic" type="text" class="form-control @error('patronimic') is-invalid @enderror" name="patronimic" value="{{ old('patronimic') }}" required autocomplete="patronimic" autofocus>
-                                @error('patronimic')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-3 my-1">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Edit') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-        </div>
-        </div>
-    </div>
-    </div>
-
-    <!-- second section -->
-
-    <div class="row justify-content-center my-3">
-    <div class="col-md-8">
-        <div class="card">
-        <div class="card-header ">{{ __('Security data') }}
-        </div>
-        <div class="card-body">
-                    <form class="my-3" method="POST" action="{{ route('register') }}">
-                        @csrf
-                        <div class="form-group row">
-                            <label for="email" class="col-md-3 col-form-label text-md-right">{{ __('E-Mail') }}</label>
-                            <div class="col-md-7">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email-confirm" class="col-md-3 col-form-label text-md-right">{{ __('Confirm Email') }}</label>
-
-                            <div class="col-md-7">
-                                <input id="email-confirm" type="email" class="form-control" name="email_confirmation" required autocomplete="new-email">
-                            </div>
-                        </div>
-
-                        <div class="container">
-                            <div class="row">
-                            <div class="col text-center">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Edit') }}
-                                </button>
-                            </div>
-                            </div>
-                        </div>
-                    </form>
-
-                    <form class="my-3" method="POST" action="{{ route('register') }}">
-                        @csrf
-                        <div class="form-group row">
-                            <label for="password" class="col-md-3 col-form-label text-md-right">{{ __('Password') }}</label>
-                            <div class="col-md-7">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-3 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-                            <div class="col-md-7">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="container">
-                            <div class="row">
-                            <div class="col text-center">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Edit') }}
-                                </button>
-                            </div>
-                            </div>
-                        </div>
-                    </form>
-        </div>
-        </div>
-    </div>
-    </div>
-</div>
 
 <!-- Orders -->
 <h3 class="text-center">User orders</h3> 

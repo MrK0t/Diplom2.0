@@ -2,10 +2,8 @@
 
 
 @section('data')
-<h3 class="text-center">ADMINKA</h3>
-<hr>
 
-<div class="container">
+<div class="container my-3">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -16,13 +14,29 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group row">
+                        <button type="button" data-bs-toggle="collapse" data-bs-target="#idcollapse" class="btn btn-light hov">Categories</button>
+                            <div class="row m-0 px-0 py-2 bg-light rounded-1 collapse" id="idcollapse">
+                                <label for="cat1">
+                                    <input type="checkbox" class="me-2" id="cat1" name="checkbox[]" value=2>salfdkj
+                                </label>
+                                <label for="cat1">
+                                    <input type="checkbox" class="me-2" id="cat1" name="checkbox[]" value=2>salfdkj
+                                </label>
+                                <label for="cat1">
+                                    <input type="checkbox" class="me-2" id="cat1" name="checkbox[]" value=2>salfdkj
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Type') }}</label>
                             <div class="col-md-6">
                                 <select class="form-select" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
                             </div>
                         </div>
 
@@ -100,6 +114,7 @@
                                         <p class="card-text text-start">data</p>
                                         <p class="card-text text-end">data</p>
                                         <p class="card-text text-end">data</p>
+                                        <hr>
                                         <div class="col text-center">
                                             <button type="submit" class="btn btn-primary">
                                                 {{ __('Edit') }}
