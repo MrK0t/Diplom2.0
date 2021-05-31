@@ -30,4 +30,6 @@ Route::resource('/rooms/types', App\Http\Controllers\RoomController::class);
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 Route::get('/profile', [App\Http\Controllers\OrderController::class, 'index'])->name('profile');
 Route::get('/adminka', [App\Http\Controllers\AdminCntroller::class, 'index'])->name('adminka');
+Route::get('/room', [App\Http\Controllers\RoomController::class, 'show'])->name('room');
+Route::get('/adminka_rooms', [App\Http\Controllers\RoomController::class, 'index'])->name('adminka_rooms');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

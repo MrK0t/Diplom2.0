@@ -5,15 +5,30 @@ profile
 
 @section('content')
 
-<div class = "seach_main">
+<div class = "seach_user">
             
             <div class ="seach_second">
             <div class="seach_border text-light">
                 <div class="seach_block">
-                    <h3 id = "w_b" class="text-center" style="margin:auto; color:white">USER PROFILE</h3>
-
+                    <!-- NAVBAR -->
+                    <nav class="navbar  navbar-light ">
+                        <div class="container-fluid">
+                            <h3 id = "w_b" class="text-center" style="margin:auto; color:white">USER PROFILE</h3>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="bi bi-tools"></span>
+                            </button>
+                            
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <form class="d-flex">
+                                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                </form>
+                            </div>   
+                        </div>   
+                    </nav>
+                    <!-- SEACH block -->
                     <div class="seach_block">
-                    <p id = "w_b" class="text-center" style="margin:auto">Find the best room on SiteName</p>
+                        <p id = "w_b" class="text-center" style="margin:auto">Find the best room on SiteName</p>
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-sm-12 text-md-end text-center ">
@@ -24,23 +39,6 @@ profile
                             <input class="form-check-input" type="checkbox">
                             <label class="form-check-label">Sort by name</label>
                         </div>
-                    </div>
-                </div>
-
-                <!-- SLIDER -->
-                <div class="multi-range-slider">
-                    <div class="row">
-                        <input type="range" id="input-left" min="0" max="100" value="25">
-                    </div>
-                    <div class="row">
-                        <input type="range" id="input-right" min="0" max="100" value="75">
-                    </div>
-
-                    <div class="slider">
-                        <div class="track"></div>
-                        <div id="range"class="range"></div>
-                        <div class="thumb left"></div>
-                        <div class="thumb right"></div>
                     </div>
                 </div>
                 
@@ -153,17 +151,19 @@ profile
     </div>
     </div>
 
+    <!-- second section -->
+
     <div class="row justify-content-center my-3">
     <div class="col-md-8">
         <div class="card">
         <div class="card-header ">{{ __('Security data') }}
         </div>
         <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form class="my-3" method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="form-group row">
-                            <label for="email" class="col-md-3 my-1 col-form-label text-md-right">{{ __('E-Mail') }}</label>
-                            <div class="col-md-8 my-1">
+                            <label for="email" class="col-md-3 col-form-label text-md-right">{{ __('E-Mail') }}</label>
+                            <div class="col-md-7">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -171,30 +171,32 @@ profile
                                     </span>
                                 @enderror
                             </div>
-                            
                         </div>
-                        
 
                         <div class="form-group row">
-                            <label for="email-confirm" class="col-md-3 my-1 col-form-label text-md-right">{{ __('Confirm Email') }}</label>
+                            <label for="email-confirm" class="col-md-3 col-form-label text-md-right">{{ __('Confirm Email') }}</label>
 
-                            <div class="col-md-8">
+                            <div class="col-md-7">
                                 <input id="email-confirm" type="email" class="form-control" name="email_confirmation" required autocomplete="new-email">
                             </div>
-                            <div class="col-md-3 my-1">
+                        </div>
+
+                        <div class="container">
+                            <div class="row">
+                            <div class="col text-center">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Edit') }}
                                 </button>
                             </div>
+                            </div>
                         </div>
-                        
                     </form>
-                    
-                    <form method="POST" action="{{ route('register') }}">
+
+                    <form class="my-3" method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="form-group row">
-                            <label for="password" class="col-md-3 my-1 col-form-label text-md-right">{{ __('Password') }}</label>
-                            <div class="col-md-8 my-1">
+                            <label for="password" class="col-md-3 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <div class="col-md-7">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -202,21 +204,22 @@ profile
                                     </span>
                                 @enderror
                             </div>
-                            
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-3 my-1 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-                            <div class="col-md-8">
+                            <label for="password-confirm" class="col-md-3 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <div class="col-md-7">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
 
-                        <div class="">
-                            <div class="col-12 my-1">
+                        <div class="container">
+                            <div class="row">
+                            <div class="col text-center">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Edit') }}
                                 </button>
+                            </div>
                             </div>
                         </div>
                     </form>
@@ -226,15 +229,17 @@ profile
     </div>
 </div>
 
-<h1>User orders</h1> 
+<!-- Orders -->
+<h3 class="text-center">User orders</h3> 
 <hr>  
 
+<div id="body_main" class = "body_main row gx-5 gy-5">
 <div class="row">
     @foreach($order_data as $order)
     <div class="col-xl-6 col-md-12 my-5">
         <div class="card">
 
-            <img src="" class="card-img-top" alt="...">
+            <img src="rooms_img/testRoom.jpg" class="card-img-top" alt="...">
             <div class="card-body">
             <div class="row">
                 <p class="card-text col-4 text-start">{{$order->created_at}}</p>
@@ -251,6 +256,7 @@ profile
         </div>
     </div>   
     @endforeach
+</div>
 </div>
 
 @endsection

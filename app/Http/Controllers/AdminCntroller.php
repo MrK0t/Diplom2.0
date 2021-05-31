@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class AdminCntroller extends Controller
@@ -13,7 +14,8 @@ class AdminCntroller extends Controller
      */
     public function index()
     {
-        return view('adminka');
+        $room_data = Room::get();
+        return view('adminka', compact('room_data'));
     }
 
     /**

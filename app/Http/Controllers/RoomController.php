@@ -14,8 +14,8 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $test = Room::get();
-        // dd($test);
+        $room_data = Room::get();
+        return view('adminka_rooms', compact('room_data'));
     }
 
     /**
@@ -47,7 +47,8 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        //
+        $room_data = Room::get();
+        return view('room');
     }
 
     /**

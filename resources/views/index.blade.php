@@ -26,23 +26,6 @@ home
                         </div>
                     </div>
                 </div>
-
-                <!-- SLIDER -->
-                <div class="multi-range-slider">
-                    <div class="row">
-                        <input type="range" id="input-left" min="0" max="100" value="25">
-                    </div>
-                    <div class="row">
-                        <input type="range" id="input-right" min="0" max="100" value="75">
-                    </div>
-
-                    <div class="slider">
-                        <div class="track"></div>
-                        <div id="range"class="range"></div>
-                        <div class="thumb left"></div>
-                        <div class="thumb right"></div>
-                    </div>
-                </div>
                 
                 <!-- filter form -->
                 <div class="row gy-2">
@@ -84,18 +67,12 @@ home
                 <li class="list-group-item">Total price: {{$room->price}}</li>
                 
                 </ul>
-                <form method="POST" action="">
-                    <input id="sdate" type="sdate" placeholder="Arrivel date"class="form-control @error('sdate') is-invalid @enderror" name="sdate" required autocomplete="sdate" v-model="sdate"t>
-                    <input id="sdate" type="fdate" placeholder="End date"class="form-control @error('fdate') is-invalid @enderror" name="fdate" required autocomplete="fdate" v-model="fdate"t>
-                </form>
+                
 
                 <div class="card-body">
-                <div class="row" style="padding:8 12;">
-                    <button type="button" class="btn btn-outline-primary" >Reserve</button>
-                </div>
-                <div class="row" style="padding:8 12;">
-                    <button type="button" class="btn btn-outline-primary" >Cancel reservation</button>
-                </div>
+                    <div class="row" style="padding:8 12;">
+                        <button type="button" class="btn btn-outline-primary" >Go to</button>
+                    </div>
                 </div>
             </div>
             </div>

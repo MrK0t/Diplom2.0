@@ -57,14 +57,14 @@ div.seach_main{
 div.seach_user{
     background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn23.img.ria.ru%2Fimages%2F155019%2F73%2F1550197385_0%3A0%3A2000%3A1126_600x0_80_0_0_4194da72ab2bad81d40e94d6bcde28a8.jpg&f=1&nofb=1");
     background-size: cover;
-    margin-top: 80px;
+    margin-top: 60px;
     padding-top: 50px;
     padding-bottom: 50px;
 }
 div.seach_cart{
     background-image: url("https://www.bar-komplekt.ru/userfls/ufiles/stojka-resepshn.jpg");
     background-size: cover;
-    margin-top: 80px;
+    margin-top: 60px;
     padding-top: 50px;
     padding-bottom: 50px;
 }
@@ -169,7 +169,7 @@ div#info{
     text-align: center;
 }
 div.body_main{
-    margin: 5% 15%;
+    margin: 1% 15%;
 }
 .obj{
     margin: 0 0;
@@ -183,7 +183,7 @@ div.body_main{
 .card-img{
     overflow:hidden;
     display: block;
-    height: 600;
+    height: 500px;
     z-index:1;
 }
 

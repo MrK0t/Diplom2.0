@@ -1,3 +1,4 @@
+
 @extends('layouts.header')
 
 @section('title')
@@ -5,38 +6,23 @@ adminka
 @endsection
 
 @section('content')
-<h1>ADMINKA</h1>
-
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-
-                    <form method="POST" action="{{ route('login') }}">
-
-                        <!-- foreach()
-                        {
-                            list
-                        } -->
-
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Login') }}
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+<div>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary">
+        <div class="container-fluid">
+            <h3 id = "w_b" class="text-center mx-3" style="margin:auto; color:white">USER PROFILE</h3>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="bi bi-tools"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <button class="btn btn-light mx-3" type="submit">Rooms</button>
+                <button class="btn btn-light mx-3" type="submit">Categories</button>
+                <button class="btn btn-light mx-3" type="submit">Types</button>
+                <button class="btn btn-light mx-3" type="submit">Buildings</button>
+            </div>   
+        </div>   
+    </nav>
+@yield('data')
 </div>
-
 @endsection
