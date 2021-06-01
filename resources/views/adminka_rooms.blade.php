@@ -16,37 +16,33 @@
                         <div class="form-group row">
                         <button type="button" data-bs-toggle="collapse" data-bs-target="#idcollapse" class="btn btn-light hov">Categories</button>
                             <div class="row m-0 px-0 py-2 bg-light rounded-1 collapse" id="idcollapse">
-                                <label for="cat1">
-                                    <input type="checkbox" class="me-2" id="cat1" name="checkbox[]" value=2>salfdkj
-                                </label>
-                                <label for="cat1">
-                                    <input type="checkbox" class="me-2" id="cat1" name="checkbox[]" value=2>salfdkj
-                                </label>
-                                <label for="cat1">
-                                    <input type="checkbox" class="me-2" id="cat1" name="checkbox[]" value=2>salfdkj
-                                </label>
+                                @foreach ($category_data as $category)
+                                    <label for="category{{$category->id}}">
+                                        <input type="checkbox" class="me-2" id="category{{$category->id}}" name="checkbox[]" value='{{$category->id}}'>{{$category->name}}
+                                    </label>
+                                @endforeach
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Type') }}</label>
+                            <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('Type') }}</label>
                             <div class="col-md-6">
                                 <select class="form-select" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <option selected>Types</option>
+                                        @foreach ($type_data as $type)
+                                            <option value='{{$type->id}}'>{{$type->name}}</option>
+                                        @endforeach
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('RoomNumber') }}</label>
+                            <label for="roomNumber" class="col-md-4 col-form-label text-md-right">{{ __('RoomNumber') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="roomNumber" type="roomNumber" class="form-control @error('roomNumber') is-invalid @enderror" name="roomNumber" value="{{ old('roomNumber') }}" required autocomplete="roomNumber" autofocus>
 
-                                @error('email')
+                                @error('roomNumber')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -55,12 +51,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
+                            <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="image" type="text" class="form-control @error('image') is-invalid @enderror" name="image" required autocomplete="current-image">
 
-                                @error('password')
+                                @error('image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -69,12 +65,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
+                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="description" type="description" class="form-control @error('description') is-invalid @enderror" name="description" required autocomplete="current-description">
 
-                                @error('password')
+                                @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -101,11 +97,11 @@
                             <div class="col-xl-6 col-md-12 my-5">
                                 <div class="card">
 
-                                    <img src="rooms_img/testRoom.jpg" class="card-img-top" alt="...">
+                                    <img src="{{$room_data[0]['image']}}" class="card-img-top" alt="...">
                                     <div class="card-body">
                                     <div class="row">
-                                        <p class="card-text col-4 text-start">{{$room->Number}}</p>
-                                        <h5 class="card-title col-4 text-center">{{$room->Price}}</h5>
+                                        <p class="card-text col-4 text-start">{{$room->roomNumber}}</p>
+                                        <h5 class="card-title col-4 text-center">{{$room->price}}</h5>
                                         </div>
                                         <div class="row">
                                             <p class="card-text col-12 text-center">category</p>

@@ -9,9 +9,9 @@ class OrderRoom extends Model
 {
     use HasFactory;
 
-    public function order()
+    public function user()
     {
-        return $this->belongsTo(Order::class, 'orderId', 'id');
+        return $this->belongsTo(User::class, 'userId', 'id');
     }
 
     public function room()

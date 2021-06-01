@@ -18,7 +18,11 @@ class RoomController extends Controller
     public function index()
     {
         $room_data = Room::get();
-        return view('adminka_rooms', compact('room_data'));
+        $category_data = RoomCategory::get();
+        $type_data = RoomTypes::get();
+        $cur_category_data = RoomCategoryRoom::get();
+
+        return view('adminka_rooms', compact('room_data', 'category_data', 'type_data', 'cur_category_data'));
     }
 
     /**
@@ -50,7 +54,13 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        
+        $room_data = Room::where('id', $id)->get();
+        $type_data = RoomTypes::where('id',  $room_data->toArray()[0]['roomTypeId']);
+
+        $cur_category_data = RoomCategoryRoom::where('roomsId', $id)->get();
+        $category_data = RoomCategory::where('id',$cur_category_data->toArray()[0]['roomCategoryId']);
+
+        return view('adminka_edit_room', compact('room_data', 'category_data', 'type_data'));
     }
 
     /**

@@ -14,15 +14,15 @@ profile
                     <!-- NAVBAR -->
                     <nav class="navbar  navbar-light ">
                         <div class="container-fluid">
-                            <h3 id = "w_b" class="text-center" style="margin:auto; color:white">USER PROFILE</h3>
+                            <h3 id = "w_b" class="text-center" style="margin:auto; color:white">Профиль пользователя</h3>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="bi bi-tools"></span>
                             </button>
                             
                             <div class="collapse navbar-collapse my-3" id="navbarSupportedContent">
                                 <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
-                                    <input id="name" type="text" class="form-control my-1 @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Name">
-                                    <button class="btn btn-primary mx-2" type="submit">Edit</button>
+                                    <input id="name" type="text" class="form-control my-1 @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Имя пользователя">
+                                    <button class="btn btn-primary mx-2" type="submit">Редактировать</button>
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -30,8 +30,8 @@ profile
                                     @enderror
                                 </form>
                                 <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
-                                    <input id="firstName" type="text" class="form-control my-1 @error('firstName') is-invalid @enderror" name="firstName" value="{{ old('firstName') }}" required autocomplete="firstName" placeholder="FirstName">
-                                    <button class="btn btn-primary mx-2" type="submit">Edit</button>
+                                    <input id="firstName" type="text" class="form-control my-1 @error('firstName') is-invalid @enderror" name="firstName" value="{{ old('firstName') }}" required autocomplete="firstName" placeholder="Имя">
+                                    <button class="btn btn-primary mx-2" type="submit">Редактировать</button>
                                     @error('firstName')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -39,8 +39,8 @@ profile
                                     @enderror
                                 </form>
                                 <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
-                                    <input id="lastName" type="text" class="form-control my-1 @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName" placeholder="LastName">
-                                    <button class="btn btn-primary mx-2" type="submit">Edit</button>
+                                    <input id="lastName" type="text" class="form-control my-1 @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName" placeholder="Фамилия">
+                                    <button class="btn btn-primary mx-2" type="submit">Редактировать</button>
                                     @error('lastName')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -48,8 +48,8 @@ profile
                                     @enderror
                                 </form>
                                 <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
-                                    <input id="patronimic" type="text" class="form-control my-1 @error('patronimic') is-invalid @enderror" name="patronimic" value="{{ old('patronimic') }}" required autocomplete="patronimic" placeholder="Patronimic">
-                                    <button class="btn btn-primary mx-2" type="submit">Edit</button>
+                                    <input id="patronimic" type="text" class="form-control my-1 @error('patronimic') is-invalid @enderror" name="patronimic" value="{{ old('patronimic') }}" required autocomplete="patronimic" placeholder="Отчество">
+                                    <button class="btn btn-primary mx-2" type="submit">Редактировать</button>
                                     @error('patronimic')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -69,10 +69,10 @@ profile
                                                 @enderror
                                             </div>
                                             <div class="col-md-5 col-sm-12">
-                                                <input id="email-confirm" type="email" class="form-control my-1" name="email_confirmation" required autocomplete="new-email" placeholder="Confirm email">
+                                                <input id="email-confirm" type="email" class="form-control my-1" name="email_confirmation" required autocomplete="new-email" placeholder="Подтвердите email">
                                             </div>
                                             <div class="col-md-2 col-sm-12 my-1">
-                                                <button class="btn btn-primary" type="submit">Edit</button>
+                                                <button class="btn btn-primary" type="submit">Редактировать</button>
                                             </div>
                                         </div>
                                     </form> 
@@ -80,7 +80,7 @@ profile
                                     <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
                                         <div class="row justify-content-center">
                                             <div class="col-md-5 col-sm-12">
-                                                <input id="password" type="text" class="form-control my-1 @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password" placeholder="Password">
+                                                <input id="password" type="text" class="form-control my-1 @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password" placeholder="Пароль">
                                                 @error('password')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -88,10 +88,10 @@ profile
                                                 @enderror
                                             </div>
                                             <div class="col-md-5 col-sm-12">
-                                                <input id="password-confirm" type="password" class="form-control my-1" name="password-confirm" required autocomplete="new-password" placeholder="Confirm password">
+                                                <input id="password-confirm" type="password" class="form-control my-1" name="password-confirm" required autocomplete="new-password" placeholder="Подтвердите пароль">
                                             </div>
                                             <div class="col-md-2 col-sm-12 my-1">
-                                                <button class="btn btn-primary" type="submit">Edit</button>
+                                                <button class="btn btn-primary" type="submit">Редактировать</button>
                                             </div>
                                         </div>
                                     </form> 
@@ -100,16 +100,17 @@ profile
                     </nav>
                     <!-- SEACH block -->
                     <div class="seach_block">
-                        <p id = "w_b" class="text-center" style="margin:auto">Find the best room on SiteName</p>
+                        <p id = "w_b" class="text-center" style="margin:auto">Отслеживайте свои забронированные номера</p>
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-sm-12 text-md-end text-center ">
+                            
                             <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">Sort by price</label>
+                            <label class="form-check-label">Сортировать по цене</label>
                         </div>
                         <div class="col-md-6 col-sm-12 text-md-start text-center">
                             <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">Sort by name</label>
+                            <label class="form-check-label">Сортировать по имени</label>
                         </div>
                     </div>
                 </div>
@@ -117,13 +118,17 @@ profile
                 <!-- filter form -->
                 <div class="row gy-2">
                     <div class="col-md-6 col-sm-12 text-md-end ">
-                        <input class = "form-control" placeholder="Min price">
+                        <input class = "form-control" placeholder="Максимальная цена">
+                        <label>Дата прибытия</label>
+                        <input id="sdate" type="date" placeholder="Arrivel date"class="form-control @error('sdate') is-invalid @enderror" name="sdate" required autocomplete="sdate" v-model="sdate"t>
                     </div>
                     <div class="col-md-6 col-sm-12">
-                        <input class = "form-control" placeholder="Max price">
+                        <input class = "form-control" placeholder="Минимальная цена">
+                        <label>Дата выселения</label>
+                    <input id="sdate" type="date" placeholder="End date"class="form-control @error('fdate') is-invalid @enderror" name="fdate" required autocomplete="fdate" v-model="fdate"t>
                     </div>
                     <div class="row mx-1 py-3" style="padding:8 12; padding-right: 20px;">
-                        <button type="button" class="btn btn-warning" >Apply filter</button>
+                        <button type="button" class="btn btn-warning" >Приментть фильтр</button>
                     </div>
                     
                 </div>
@@ -134,33 +139,75 @@ profile
 
 
 <!-- Orders -->
-<h3 class="text-center">User orders</h3> 
-<hr>  
 
 <div id="body_main" class = "body_main row gx-5 gy-5">
-<div class="row">
-    @foreach($order_data as $order)
-    <div class="col-xl-6 col-md-12 my-5">
-        <div class="card">
+            @foreach($room_data as $room)
+            <div id="obj"class = "obj col-md-6">
+                <div class = "shadow">
+                    <h2 id ="w">{{$room->roomType->name}}</h2>
+                </div>
+            <div class="card">
+                <div class="card-img">
+                <img class="" src="{{$room->image}}">
+                </div>
+                <div class="card-body">
+                <h5 class="card-title">Описание:</h5>
+                <p class="card-text">{{$room->description}}</p>
+                </div>
 
-            <img src="rooms_img/testRoom.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-            <div class="row">
-                <p class="card-text col-4 text-start">{{$order->created_at}}</p>
-                <h5 class="card-title col-4 text-center">{{$order->user->name}}</h5>
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item">Категории: 
+                    @php $cat_out=[] @endphp
+
+                    @foreach ($cur_category_data as $cur_category)
+                        @if ($cur_category->roomsId == $room->id)
+                            @foreach ($category_data as $category)
+                                @if ($category->id == $cur_category->roomCategoryId)
+
+                                    @php 
+                                    array_push($cat_out, $category->name);
+                                    @endphp
+
+                                @endif
+                            @endforeach
+                        @endif
+                    @endforeach
+
+                    {{implode (', ', $cat_out)}}
+                </li>
+                <li class="list-group-item">Дата прибытия: 
+                    @foreach ($order_data as $order)
+                        @if ($order->roomId == $room->id)
+                            @foreach ($category_data as $category)
+                                @if ($category->id == $cur_category->roomCategoryId)
+
+                                    @php 
+                                    array_push($cat_out, $category->name);
+                                    @endphp
+
+                                @endif
+                            @endforeach
+                        @endif
+                    @endforeach
+                </li>
+                <li class="list-group-item">Дата выселения: {{$room->building->address}}</li>
+                <li class="list-group-item">Цена за сутки: {{$room->price}}</li>
+                
+                </ul>
+                
+
+                <div class="card-body">
+                    <div class="row" style="padding:8 12;">
+                        <button type="button" class="btn btn-outline-primary" onclick="location.href='{{ route('index.show', $room->id)}}'">Перейти к номеру</button>
+                    </div>
                 </div>
-                <div class="row">
-                    <p class="card-text col-12 text-center">category</p>
-                </div>
-                <hr>
-                <p class="card-text text-start">data</p>
-                <p class="card-text text-end">data</p>
-                <p class="card-text text-end">data</p>
-            </div>  
+            </div>
+            </div>
+            @endforeach
         </div>
-    </div>   
-    @endforeach
-</div>
+
+
+      
 </div>
 
 @endsection

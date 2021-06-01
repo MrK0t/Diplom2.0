@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderRoom;
+use App\Models\Room;
+use App\Models\RoomCategory;
+use App\Models\RoomCategoryRoom;
+use App\Models\RoomTypes;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -14,8 +19,13 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $order_data = Order::get();
-        return view('profile', compact('order_data'));
+        $room_data = Room::get();
+        $category_data = RoomCategory::get();
+        $type_data = RoomTypes::get();
+        $cur_category_data = RoomCategoryRoom::get();
+        $order_data = OrderRoom::get();
+
+        return view('profile', compact('order_data','room_data', 'category_data', 'type_data', 'cur_category_data'));
     }
 
     /**

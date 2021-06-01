@@ -16,12 +16,14 @@ class CreateOrderRoomsTable extends Migration
         Schema::create('order_rooms', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('roomId')->unsigned();
-            $table->bigInteger('orderId')->unsigned();
+            $table->bigInteger('userId')->unsigned();
+            
+            $table->timestamps();
             $table->date('sDate');
             $table->date('fDate');
-
+            
+            $table->foreign('userId')->references('id')->on('users');
             $table->foreign('roomId')->references('id')->on('rooms');
-            $table->foreign('orderId')->references('id')->on('orders');
         });
     }
 

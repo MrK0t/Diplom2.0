@@ -42,20 +42,20 @@
             <div class="navbar-collapse collapse " id="navbarCollapse" style="">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
-                    <a class="nav-link active text-light" aria-current="page" href="{{ route('index')}}">Home</a>
+                    <a class="nav-link active text-light" aria-current="page" href="{{ route('index')}}">Главная</a>
                 </li>
                 @auth
                     @if(Auth::User()->isAdmin === 1)
-                    <a class="nav-link text-light" href="{{ route('rooms.index')}}">Adminka</a>
+                    <a class="nav-link text-light" href="{{ route('rooms.index')}}">Администрирование</a>
                     @endif
-                    <a class="nav-link text-light" href="{{ route('profile')}}">Profile</a>
+                    <a class="nav-link text-light" href="{{ route('profile')}}">Профиль</a>
                 @endauth
                 @guest
-                    <a class="nav-link text-light" href="{{ route('login')}}">Log in</a>
-                    <a class="nav-link text-light" href="{{ route('register')}}">Sign up</a>
+                    <a class="nav-link text-light" href="{{ route('login')}}">Вход</a>
+                    <a class="nav-link text-light" href="{{ route('register')}}">Регистрация</a>
                 @endguest
                 @auth
-                    <a class="nav-link text-light" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" href="{{ route('logout') }}">Log out({{Auth::user()->name}})</a>
+                    <a class="nav-link text-light" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" href="{{ route('logout') }}">Выход({{Auth::user()->name}})</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
