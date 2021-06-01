@@ -60,7 +60,9 @@ class TypeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $type_data = RoomTypes::where('id', $id)->get();
+        
+        return view('adminka_edit_type', ['type_data' => $type_data]);
     }
 
     /**

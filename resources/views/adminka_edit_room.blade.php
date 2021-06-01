@@ -1,11 +1,12 @@
-@extends('layouts.header')
+@extends('adminka')
 
-@section('content')
-<div class="container">
+
+@section('data')
+<div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">Edit room: {{$room_data[0]['roomNumber']}} </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -31,21 +32,23 @@
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Type') }}</label>
                                 <div class="col-md-6">
                                     <select class="form-select" aria-label="Default select example">
-                                        <option selected>Open this select menu</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        @foreach ($type_data as $type)
+                                            @if($type->id == $room_data[0]['roomTypeId'])
+                                                <option selected>{{$type->name}}</option>
+                                            @endif
+                                                <option value='{{$type->id}}'>{{$type->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('RoomNumber') }}</label>
+                                <label for="roomNumber" class="col-md-4 col-form-label text-md-right">{{ __('RoomNumber') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    <input id="roomNumber" type="roomNumber" class="form-control @error('roomNumber') is-invalid @enderror" name="roomNumber" required autocomplete="roomNumber" autofocus value="{{$room_data[0]['roomNumber']}}">
 
-                                    @error('email')
+                                    @error('roomNumber')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -54,12 +57,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
+                                <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                    <input id="image" type="image" class="form-control @error('image') is-invalid @enderror" name="image" required autocomplete="current-image" value="{{$room_data[0]['image']}}">
 
-                                    @error('password')
+                                    @error('image')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -68,12 +71,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
+                                <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                    <input id="description" type="description" class="form-control @error('description') is-invalid @enderror" name="description" required autocomplete="current-description" value="{{$room_data[0]['description']}}">
 
-                                    @error('password')
+                                    @error('description')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -85,7 +88,7 @@
                                 <div class="row">
                                 <div class="col text-center">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Add new') }}
+                                        {{ __('Edit') }}
                                     </button>
                                 </div>
                                 </div>

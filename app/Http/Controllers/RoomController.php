@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Room;
 use App\Models\RoomCategory;
 use App\Models\RoomCategoryRoom;
+use App\Models\RoomTypes;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -62,9 +63,10 @@ class RoomController extends Controller
     {
         $room_data = Room::where('id', $id)->get();
         $category_data = RoomCategory::get();
+        $type_data = RoomTypes::get();
         $cur_category_data = RoomCategoryRoom::where('roomsId', $id)->get();
 
-        return view('adminka_edit_room', compact('room_data', 'category_data', 'cur_category_data'));
+        return view('adminka_edit_room', compact('room_data', 'category_data', 'type_data', 'cur_category_data'));
     }
 
     /**

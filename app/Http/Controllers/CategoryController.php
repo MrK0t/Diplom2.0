@@ -59,7 +59,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category_data = RoomCategory::where('id', $id)->get();
+
+        return view('adminka_edit_categories', compact('category_data'));
     }
 
     /**
