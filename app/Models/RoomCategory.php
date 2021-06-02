@@ -9,6 +9,11 @@ class RoomCategory extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+    ];
+    public $timestamps = false;
+
     public function roomCategoryRoom()
     {
         return $this->hasMany(RoomCategoryRoom::class, 'categoryId', 'id');

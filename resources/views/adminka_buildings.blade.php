@@ -14,7 +14,8 @@
             <div class="card-header"><h5 class="text-center">Добавление нового корпуса</h3></div>
 
                 <div class="card-body">
-                    <form method="POST" action="">
+                    <form method="POST" action="{{ route('buildings.store') }}">
+                    
                         @csrf
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Номер корпуса') }}</label>
@@ -28,10 +29,12 @@
                             </div>
                         </div>
 
+
+
                         <div class="form-group row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Адрес') }}</label>
                             <div class="col-md-6">
-                                <input id="address" type="address" class="form-control @error('type') is-invalid @enderror" name="type" required autocomplete="current-type">
+                                <input id="address" type="address" class="form-control @error('type') is-invalid @enderror" name="address" required autocomplete="current-type">
                                 @error('type')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -50,6 +53,7 @@
                             </div>
                         </div>
                     </form>
+
                     
                     <!-- ITEMS LIST -->
                     <hr>
@@ -71,7 +75,7 @@
                                                 {{ __('Изменить') }}
                                             </button>
 
-                                            <form method="delete" action="{{route('buildings.destroy', $building->id)}}">
+                                            <form method="post" action="{{route('buildings.destroy', $building->id)}}">
                                                 @method('delete')
                                                 @csrf
                                                 <button type="delete" class="btn btn-danger my-2">

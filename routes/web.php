@@ -22,7 +22,7 @@ Auth::routes();
 Route::resource('/orders', App\Http\Controllers\OrderController::class);
 Route::resource('/adminka/rooms', App\Http\Controllers\RoomController::class);
 Route::resource('/adminka/categories', App\Http\Controllers\CategoryController::class);
-Route::resource('/adminka/types', App\Http\Controllers\TypeController::class);
+Route::resource('/adminka/types', App\Http\Controllers\RoomTypeController::class);
 Route::resource('/adminka/buildings', App\Http\Controllers\BuildingController::class);
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');

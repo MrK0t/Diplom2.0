@@ -36,7 +36,15 @@ class BuildingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request_after = $request->validate(
+            [
+                'name'=>'string|required|unique:buildings,name|max:4',
+                'address'=>'string|required|max:60'
+            ]
+        );
+
+        Building::create($request_after);
+        return redirect(route('buildings.index'));
     }
 
     /**
@@ -73,7 +81,15 @@ class BuildingController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
+        $request_after = $request->validate(
+            [
+                'name'=>'string|required|unique:room_types,name|max:50',
+                'address'=>'string|required|max:60'
+            ]
+        );
+
+        Building::where('id', $id)->update($request_after);
+        return redirect(route('buildings.index'));
     }
 
     /**
@@ -84,9 +100,14 @@ class BuildingController extends Controller
      */
     public function destroy($id)
     {
+        $building_data = Building::where('id', $id)->first();
+        if($building_data != null)
+        {
+            // Building::delete($building_data);
+            $building_data->delete();
 
-        // return '14234';
-        return view('adminka_edit_buildings');
+        }
+        return redirect(route('buildings.index'));
 
     }
 }

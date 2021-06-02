@@ -12,7 +12,8 @@
                 <div class="card-header"><h5 class="text-center">Редактирование корпуса: {{$building_data[0]['name']}}</h3></div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('buildings.update', $building_data[0]['id']) }}">
+                            @method('PATCH')
                             @csrf
                             <div class="form-group row">
 
@@ -50,6 +51,9 @@
                                     <button type="submit" class="btn btn-outline-primary " >
                                         {{ __('Изменить') }}
                                     </button>
+                        </form>
+
+                        
                                     <button type="submit" class="btn btn-danger my-2">
                                     <div class="mx-2">
                                         {{ __('Удалить') }}
@@ -58,7 +62,6 @@
                                 </div>
                                 </div>
                             </div>
-                        </form>
                 </div>
             </div>
         </div>

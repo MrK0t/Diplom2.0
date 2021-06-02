@@ -21,7 +21,6 @@ class CreateRoomsTable extends Migration
             $table->string('image', 301);
             $table->text('description', 301);
             $table->integer('price');
-            $table->boolean('isFree');
 
             $table->foreign('roomTypeId')->references('id')->on('room_types');
             $table->foreign('buildingId')->references('id')->on('buildings');

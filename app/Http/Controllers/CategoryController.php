@@ -37,7 +37,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request_after = $request->validate(
+            [
+                'name'=>'string|required|unique:room_categories,name|max:50'
+            ]
+        );
+        // dd($request_after);
+
+        RoomCategory::create($request_after);
+        return redirect(route('categories.index'));
     }
 
     /**
@@ -73,7 +81,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $request_after = $request->validate(
+            [
+                'name'=>'string|required|unique:room_categories,name|max:50'
+            ]
+        );
+        
+        RoomCategory::where('id', $id)->update($request_after);
+        return redirect(route('categories.index'));
     }
 
     /**

@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Building extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'address',
+    ];
+    public $timestamps = false;
+
+    public function rooms()
+    {
+        return $this->hasMany(Room::class, 'buildingId', 'id');
+    }
 }

@@ -18,10 +18,10 @@ class DatabaseSeeder extends Seeder
         $rooms_img = ['/rooms_img/testRoom.jpg', 'https://i.pinimg.com/originals/d0/a9/46/d0a946309e769a65786767815f47ac75.jpg', 'https://i.pinimg.com/originals/75/85/4a/75854af1eb06a06c06766416aafc85b4.jpg', 'https://cdn.ostrovok.ru/t/x500/content/0e/3a/0e3acad97e765e0a610f4313e3fd393c59397a6f.jpeg', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdynamic-media-cdn.tripadvisor.com%2Fmedia%2Fphoto-o%2F13%2F2e%2F2b%2F23%2Fmur-hotel-faro-jandia.jpg%3Fw%3D900%26h%3D-1%26s%3D1&f=1&nofb=1', 'http://www.tollesonhotels.com/wp-content/uploads/2017/03/image-result-for-sustainable-hotel-room.jpeg', 'https://i1.wp.com/hotel-umz.ru/wp-content/uploads/2015/06/DSC_73011.jpg', 'https://4.bp.blogspot.com/-S03SPx13CfI/UWvKhH7KtgI/AAAAAAAAAKk/_cu12FTMifY/s1600/design_interior_20.jpg', 'https://yahroma-park.ru/images/new/2-bum/002.jpg','http://www.n-mishor.com/4k_rooms/room_13/room-13_03.jpg'];
 
         // BUiLDINGS
-        for($i = 0; $i < 3; $i++)
+        for($i = 1; $i <= 3; $i++)
         {
             DB::table('buildings')->insert([
-                'name' => random_int(2, 4),
+                'name' => $i,
                 'address' => Str::random(51).'Street',
                 ]);
         }
@@ -84,8 +84,7 @@ class DatabaseSeeder extends Seeder
                 'roomNumber' => random_int(2, 4),
                 'image' => $rooms_img[$i],
                 'price' => random_int(1500, 20000),
-                'description' => Str::random(51).'Room-description',
-                'isFree' => random_int(0, 1),
+                'description' => Str::random(51).'Room-description'
             ]);
         }
 

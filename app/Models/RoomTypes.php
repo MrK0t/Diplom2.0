@@ -9,6 +9,11 @@ class RoomTypes extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+    ];
+    public $timestamps = false;
+
     public function room()
     {
         return $this->hasMany(Room::class, 'roomTypeId', 'id');
