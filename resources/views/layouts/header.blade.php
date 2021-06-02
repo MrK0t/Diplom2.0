@@ -46,7 +46,17 @@
                 </li>
                 @auth
                     @if(Auth::User()->isAdmin === 1)
-                    <a class="nav-link text-light" href="{{ route('rooms.index')}}">Администрирование</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Администрирование
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="Администрирование">
+                            <li><a class="dropdown-item" href="{{ route('rooms.index')}}">Номера</a></li>
+                            <li><a class="dropdown-item" href="{{ route('categories.index')}}">Категории</a></li>
+                            <li><a class="dropdown-item" href="{{ route('types.index')}}">Типы</a></li>
+                            <li><a class="dropdown-item" href="{{ route('buildings.index')}}">Корпуса</a></li>
+                        </ul>
+                    </li>
                     @endif
                     <a class="nav-link text-light" href="{{ route('profile')}}">Профиль</a>
                 @endauth

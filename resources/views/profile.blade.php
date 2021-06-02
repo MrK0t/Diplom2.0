@@ -22,7 +22,7 @@ profile
                             <div class="collapse navbar-collapse my-3" id="navbarSupportedContent">
                                 <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
                                     <input id="name" type="text" class="form-control my-1 @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Имя пользователя">
-                                    <button class="btn btn-primary mx-2" type="submit">Редактировать</button>
+                                    <button class="btn btn-primary mx-2" type="submit">Изменить</button>
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -31,7 +31,7 @@ profile
                                 </form>
                                 <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
                                     <input id="firstName" type="text" class="form-control my-1 @error('firstName') is-invalid @enderror" name="firstName" value="{{ old('firstName') }}" required autocomplete="firstName" placeholder="Имя">
-                                    <button class="btn btn-primary mx-2" type="submit">Редактировать</button>
+                                    <button class="btn btn-primary mx-2" type="submit">Изменить</button>
                                     @error('firstName')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -40,7 +40,7 @@ profile
                                 </form>
                                 <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
                                     <input id="lastName" type="text" class="form-control my-1 @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName" placeholder="Фамилия">
-                                    <button class="btn btn-primary mx-2" type="submit">Редактировать</button>
+                                    <button class="btn btn-primary mx-2" type="submit">Изменить</button>
                                     @error('lastName')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -49,7 +49,7 @@ profile
                                 </form>
                                 <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
                                     <input id="patronimic" type="text" class="form-control my-1 @error('patronimic') is-invalid @enderror" name="patronimic" value="{{ old('patronimic') }}" required autocomplete="patronimic" placeholder="Отчество">
-                                    <button class="btn btn-primary mx-2" type="submit">Редактировать</button>
+                                    <button class="btn btn-primary mx-2" type="submit">Изменить</button>
                                     @error('patronimic')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -72,7 +72,7 @@ profile
                                                 <input id="email-confirm" type="email" class="form-control my-1" name="email_confirmation" required autocomplete="new-email" placeholder="Подтвердите email">
                                             </div>
                                             <div class="col-md-2 col-sm-12 my-1">
-                                                <button class="btn btn-primary" type="submit">Редактировать</button>
+                                                <button class="btn btn-primary" type="submit">Изменить</button>
                                             </div>
                                         </div>
                                     </form> 
@@ -91,7 +91,7 @@ profile
                                                 <input id="password-confirm" type="password" class="form-control my-1" name="password-confirm" required autocomplete="new-password" placeholder="Подтвердите пароль">
                                             </div>
                                             <div class="col-md-2 col-sm-12 my-1">
-                                                <button class="btn btn-primary" type="submit">Редактировать</button>
+                                                <button class="btn btn-primary" type="submit">Изменить</button>
                                             </div>
                                         </div>
                                     </form> 
@@ -141,69 +141,70 @@ profile
 <!-- Orders -->
 
 <div id="body_main" class = "body_main row gx-5 gy-5">
-            @foreach($room_data as $room)
-            <div id="obj"class = "obj col-md-6">
-                <div class = "shadow">
-                    <h2 id ="w">{{$room->roomType->name}}</h2>
-                </div>
-            <div class="card">
-                <div class="card-img">
-                <img class="" src="{{$room->image}}">
-                </div>
-                <div class="card-body">
-                <h5 class="card-title">Описание:</h5>
-                <p class="card-text">{{$room->description}}</p>
-                </div>
+        @foreach ($order_data as $order)
 
-                <ul class="list-group list-group-flush">
-                <li class="list-group-item">Категории: 
-                    @php $cat_out=[] @endphp
+            @if($order->userId == Auth::user()->id)
+                @foreach($room_data as $room)
+                        
+                    @if ($order->roomId == $room->id)
+                        <div id="obj"class = "obj col-md-6">
+                            <div class = "shadow">
+                                <h2 id ="w">{{$room->roomType->name}}</h2>
+                            </div>
+                        <div class="card">
+                            <div class="card-img">
+                            <img class="" src="{{$room->image}}">
+                            </div>
+                            <div class="card-body">
+                            <h5 class="card-title">Описание:</h5>
+                            <p class="card-text">{{$room->description}}</p>
+                            </div>
 
-                    @foreach ($cur_category_data as $cur_category)
-                        @if ($cur_category->roomsId == $room->id)
-                            @foreach ($category_data as $category)
-                                @if ($category->id == $cur_category->roomCategoryId)
+                            <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Категории: 
+                                @php $cat_out=[]; @endphp
+                                
+                                @foreach ($cur_category_data as $cur_category)
+                                    @if ($cur_category->roomsId == $room->id)
+                                        @foreach ($category_data as $category)
+                                            @if ($category->id == $cur_category->roomCategoryId)
 
-                                    @php 
-                                    array_push($cat_out, $category->name);
-                                    @endphp
+                                                @php 
+                                                    array_push($cat_out, $category->name);
+                                                @endphp
 
-                                @endif
-                            @endforeach
-                        @endif
-                    @endforeach
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                @endforeach
 
-                    {{implode (', ', $cat_out)}}
-                </li>
-                <li class="list-group-item">Дата прибытия: 
-                    @foreach ($order_data as $order)
-                        @if ($order->roomId == $room->id)
-                            @foreach ($category_data as $category)
-                                @if ($category->id == $cur_category->roomCategoryId)
+                                {{implode (', ', $cat_out)}}
+                            </li>
+                            <li class="list-group-item">Корпус: {{$room->building->name}}</li>
+                            <li class="list-group-item">Номер комнаты: {{$room->roomNumber}}</li>
+                            <li class="list-group-item">Дата прибытия: {{$order->sDate}}</li>
+                            <li class="list-group-item">Дата выселения: {{$order->fDate}}</li>
+                            <li class="list-group-item">Цена за сутки: {{$room->price}}</li>
+                            
+                            </ul>
+                            
 
-                                    @php 
-                                    array_push($cat_out, $category->name);
-                                    @endphp
+                            <div class="card-body">
+                                <div class="row" style="padding:8 12;">
+                                    <button type="button" class="btn btn-outline-primary" onclick="location.href='{{ route('index.show', $room->id)}}'">Перейти к номеру</button>
+                                </div>
+                                <div class="row" style="padding:8 12;">
+                                    <button type="button" class="btn btn-danger my-3" onclick="">Отменить резерв</button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    @endif
 
-                                @endif
-                            @endforeach
-                        @endif
-                    @endforeach
-                </li>
-                <li class="list-group-item">Дата выселения: {{$room->building->address}}</li>
-                <li class="list-group-item">Цена за сутки: {{$room->price}}</li>
-                
-                </ul>
-                
+                @endforeach
+            @endif
 
-                <div class="card-body">
-                    <div class="row" style="padding:8 12;">
-                        <button type="button" class="btn btn-outline-primary" onclick="location.href='{{ route('index.show', $room->id)}}'">Перейти к номеру</button>
-                    </div>
-                </div>
-            </div>
-            </div>
-            @endforeach
+        @endforeach
         </div>
 
 

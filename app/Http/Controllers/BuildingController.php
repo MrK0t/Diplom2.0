@@ -60,7 +60,6 @@ class BuildingController extends Controller
     {
         {
             $building_data = Building::where('id', $id)->get();
-    
             return view('adminka_edit_buildings', compact('building_data'));
         }
     }
@@ -85,6 +84,9 @@ class BuildingController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        // return '14234';
+        return view('adminka_edit_buildings');
+
     }
 }

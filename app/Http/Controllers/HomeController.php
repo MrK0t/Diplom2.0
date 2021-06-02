@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OrderRoom;
 use App\Models\Room;
 use App\Models\RoomCategory;
 use App\Models\RoomCategoryRoom;

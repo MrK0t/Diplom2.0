@@ -1,5 +1,8 @@
 @extends('adminka')
 
+@section('name')
+Корпуса
+@endsection
 
 @section('data')
 
@@ -8,13 +11,13 @@
         <div class="col-md-8">
             <div class="card">
                 
-                <div class="card-header">{{ __('Categories') }}</div>
+            <div class="card-header"><h5 class="text-center">Добавление нового корпуса</h3></div>
 
                 <div class="card-body">
                     <form method="POST" action="">
                         @csrf
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('BuildingName') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Номер корпуса') }}</label>
                             <div class="col-md-6">
                                 <input id="name" type="name" class="form-control @error('name') is-invalid @enderror" name="name" required autocomplete="current-name">
                                 @error('name')
@@ -26,7 +29,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Адрес') }}</label>
                             <div class="col-md-6">
                                 <input id="address" type="address" class="form-control @error('type') is-invalid @enderror" name="type" required autocomplete="current-type">
                                 @error('type')
@@ -41,7 +44,7 @@
                             <div class="row">
                             <div class="col text-center">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Add new') }}
+                                    {{ __('Добавить') }}
                                 </button>
                             </div>
                             </div>
@@ -55,19 +58,28 @@
                             @foreach($building_data as $building)
                             <div class="col-xl-6 col-md-12 my-5">
                                 <div class="card">
+                                    
+                                    <div class="card-header"><h6 class="text-center">Номер корпуса: {{$building->name}}</h6></div>
 
                                     <div class="card-body">
                                     <div class="row">
-                                        <p class="card-text col-12 text-center">{{$building->name}}</p>
-                                        <p class="card-text col-12 text-center">{{$building->address}}</p>
+                                        <p class="card-text col-12 text-center">Адрес: {{$building->address}}</p>
                                     </div>
                                     <hr>
                                     <div class="col text-center">
-                                            <button type="submit" class="btn btn-primary">
-                                                {{ __('Edit') }}
+                                            <button type="submit" class="btn btn-outline-primary" onclick="location.href='{{ route('buildings.edit', $building->id)}}'">
+                                                {{ __('Изменить') }}
                                             </button>
-                                            <button type="submit" class="btn btn-outline-danger">
-                                                {{ __('Delete') }}
+
+                                            <form method="delete" action="{{route('buildings.destroy', $building->id)}}">
+                                                @csrf
+                                                {{method_field('delete')}}
+                                                <button type="delete" class="btn btn-danger my-2">
+                                                <div class="mx-2">
+                                                    {{ __('Удалить') }}
+                                                </div>
+                                            </form>
+
                                             </button>
                                         </div>
                                     </div>  
