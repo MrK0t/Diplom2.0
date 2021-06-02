@@ -72,8 +72,8 @@
                                             </button>
 
                                             <form method="delete" action="{{route('buildings.destroy', $building->id)}}">
+                                                @method('delete')
                                                 @csrf
-                                                {{method_field('delete')}}
                                                 <button type="delete" class="btn btn-danger my-2">
                                                 <div class="mx-2">
                                                     {{ __('Удалить') }}
