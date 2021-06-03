@@ -11,6 +11,8 @@ use App\Models\RoomTypes;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\MessageBag;
+use Illuminate\Support\ViewErrorBag;
 
 class OrderController extends Controller
 {
@@ -48,13 +50,11 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $cur_date = date('Y-m-d');
-
         $request_after = $request->validate(
             [
                 'roomId'=>'required',
                 'userId'=>'required',
-                'sDate'=>'date|required|after_or_equal:'.$cur_date,
+                'sDate'=>'date|required|after_or_equal:'.date('Y-m-d'),
                 'fDate'=>'date|required|after:'.'sDate',
                 ]
             );
@@ -78,7 +78,17 @@ class OrderController extends Controller
             }
             if($have_errors)
             {
-                dd('room already reserved since '.$sReserv.' for '.$fReserv);
+                
+                $err_interface = new MessageBag();
+                $err_interface->add('test', 'Room was already reserved from '.$sReserv.' to '.$fReserv.'.');
+                // dd($err_interface);
+                
+                $err = new ViewErrorBag();
+                $err->__set('order_error', $err_interface );
+                // dd($err);
+                //  dd($errors);
+                return redirect()->back()->withErrors($err);
+                // return redirect(route('index.show', $request_after['roomId']));
             }
             else
             {
@@ -88,7 +98,7 @@ class OrderController extends Controller
         }
         else
         {
-            dd('all cool');   
+            // dd('all cool');   
             OrderRoom::create($request_after);
             return redirect(route('orders.index'));
         }

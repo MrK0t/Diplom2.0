@@ -27,4 +27,3 @@ Route::resource('/adminka/buildings', App\Http\Controllers\BuildingController::c
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 Route::get('/room/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('index.show');
-Route::post('/filtered', [App\Http\Controllers\HomeController::class, 'index_filtered'])->name('index.filtered');

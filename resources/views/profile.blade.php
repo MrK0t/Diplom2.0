@@ -128,7 +128,7 @@ profile
                     <input id="sdate" type="date" placeholder="End date"class="form-control @error('fdate') is-invalid @enderror" name="fdate" required autocomplete="fdate" v-model="fdate"t>
                     </div>
                     <div class="row mx-1 py-3" style="padding:8 12; padding-right: 20px;">
-                        <button type="button" class="btn btn-warning" >Приментть фильтр</button>
+                        <button type="button" class="btn btn-warning" >Применить фильтр</button>
                     </div>
                     
                 </div>

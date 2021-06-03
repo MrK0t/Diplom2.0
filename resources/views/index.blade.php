@@ -15,41 +15,60 @@ home
                     <div class="seach_block">
                     <p id = "w_b" class="text-center" style="margin:auto">Бронируете номера в лучшей гостинице</p>
                     </div>
-                    <div class="row ">
-                        <div class="col-md-6 col-sm-12 text-md-end text-center ">
-                            <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">Сортировать по цене</label>
-                        </div>
-                        <div class="col-md-6 col-sm-12 text-md-start text-center">
-                            <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">Сортировать по имени</label>
-                        </div>
-                    </div>
                 </div>
+                <hr>
                 
                 <!-- filter form -->
-                <form method="POST" action="{{route('index.filtered')}}">
+                <form method="GET" action="{{route('index')}}">
                     @csrf
                     <div class="row gy-3">
                         <div class="col-md-6 col-sm-12 text-md-end">
-                            <input id="minPrice" name="minPrice" type="integer" class = "form-control @error('sDate') is-invalid @enderror" placeholder="Минимальная цена">
+                            <!-- <label>Макимальная цена</label> -->
+                            <input id="minPrice" name="minPrice" type="integer" class = "form-control"  placeholder="Минимальная цена" class="form-control @error('minPrice') is-invalid @enderror">
                         </div>
                         <div class="col-md-6 col-sm-12">
-                            <input id="maxPrice" name="maxPrice" type="integer" class = "form-control" placeholder="Максимальная цена">
+                            <!-- <label>Минимальная цена</label> -->
+                            <input id="maxPrice" name="maxPrice" type="integer" class = "form-control" placeholder="Максимальная цена" class="form-control @error('maxPrice') is-invalid @enderror">
                         </div>
                         <div class="col-md-6 col-sm-12 text-md-right ">
                             <label>Дата прибытия</label>
-                            <input id="Sdate" type="date" placeholder="Arrivel date"class="form-control @error('sDate') is-invalid @enderror" name="sDate" required autocomplete="sDate">
+                            <input id="sDate" type="date" placeholder="Arrivel date" class="form-control @error('sDate') is-invalid @enderror" name="sDate" autocomplete="sDate">
                         </div>
                         <div class="col-md-6 col-sm-12 ">
                             <label>Дата выселения</label>
-                            <input id="fDate" type="date" placeholder="End date"class="form-control @error('fDate') is-invalid @enderror" name="fDate" required autocomplete="fDate">
+                            <input id="fDate" type="date" placeholder="End date"class="form-control @error('fDate') is-invalid @enderror" name="fDate" autocomplete="fDate">
                         </div>
                         <div class="row mx-1 py-3" style="padding:8 12; padding-right: 20px;">
                             <button type="submit" class="btn btn-warning" >Применить фильтры</button>
                         </div>
                     </div>
                 </form>
+                @if($errors->any())
+
+                
+                <!-- Modal -->
+                    <div class="modal fade" id="errors" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-muted" id="exampleModalLabel">Ошибки при вводе данных</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                @foreach ($errors->all() as $e)
+                                    <p>{{$e}}</p>
+                                    <br>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                <script> 
+                    var myModal = new bootstrap.Modal(document.getElementById('errors')) 
+                    myModal.show();
+                </script>
+                @endif
             </div>
             </div>
         </div>

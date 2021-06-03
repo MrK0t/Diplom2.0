@@ -26,12 +26,76 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $room_data = Room::get();
         $category_data = RoomCategory::get();
         $type_data = RoomTypes::get();
         $cur_category_data = RoomCategoryRoom::get();
+        $order_data = OrderRoom::get();
+        $room_data = Room::get();
+        
+        
+        if($request['sDate'] !== null || $request['fDate'] !== null)
+        {
+            $request_after = $request->validate(
+                [
+                'sDate'=>'date|required|after_or_equal:'.date('Y-m-d'),
+                'fDate'=>'date|required|after:'.'sDate',
+                ]
+            );
+                
+            foreach($room_data as $key => $room)
+            {
+                foreach($order_data as $orders)
+                {
+                    if($room['id'] == $orders['roomId'])
+                    {
+                        // if it will be all
+                        if($request_after['sDate'] <= $orders['fDate'] && $request_after['fDate'] >= $orders['sDate']) 
+                        {
+                            unset($room_data[$key]) ;
+                        }
+                    }
+                }
+            }
+        }
+        
+        if($request['minPrice'] !== null)
+        {
+            $request_after = $request->validate(
+                [
+                    'minPrice'=>'integer',
+                    ]
+                ); 
+                foreach($room_data as $key => $room)
+                {
+                    if($room['price'] <= $request['minPrice'])
+                    {
+                    // dd($key, $room, $room_data);
+                    unset($room_data[$key]) ;
+                }
+            }
+            
+        }
+
+        if($request['maxPrice'] !== null)
+        {
+            $request_after = $request->validate(
+                [
+                    'maxPrice'=>'integer',
+                ]
+            );  
+            foreach($room_data as $key => $room)
+                {
+                    if($room['price'] >= $request['maxPrice'])
+                    {
+                    // dd($key, $room, $room_data);
+                    unset($room_data[$key]) ;
+                }  
+            }
+        }
+
+        
 
         return view('index', compact('room_data', 'category_data', 'type_data', 'cur_category_data'));
     }
@@ -59,16 +123,5 @@ class HomeController extends Controller
         }
 
         return view('room', compact('room_data', 'category_data', 'type_data', 'buffer'));
-    }
-
-    public function index_filtered($request)
-    {
-        dd($request);
-        $room_data = Room::get();
-        $category_data = RoomCategory::get();
-        $type_data = RoomTypes::get();
-        $cur_category_data = RoomCategoryRoom::get();
-
-        return view('index', compact('room_data', 'category_data', 'type_data', 'cur_category_data'));
     }
 }

@@ -29,7 +29,9 @@ room
             <div class="row gy-2">
                     <div class="col-md-6 col-sm-12 text-md-right ">
                         <input id="roomId" type="hidden" name="roomId" value="{{$room_data[0]['id']}}">
+                        @auth
                         <input id="userId" type="hidden" name="userId" value="{{Auth::user()->id}}">
+                        @endauth
                         <label>Дата прибытия</label>
                         <input id="Sdate" type="date" placeholder="Arrivel date"class="form-control @error('sDate') is-invalid @enderror" name="sDate" required autocomplete="sDate">
                     </div>
@@ -43,10 +45,29 @@ room
             </div>
             </form>
             @if($errors->any())
-            @foreach ($errors->all() as $e)
-                {{$e}}
-            @endforeach
-            @endif
+                <!-- Modal -->
+                    <div class="modal fade" id="errors" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-muted" id="exampleModalLabel">Ошибки при вводе данных</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                @foreach ($errors->all() as $e)
+                                    <p>{{$e}}</p>
+                                    <br>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                <script> 
+                    var myModal = new bootstrap.Modal(document.getElementById('errors')) 
+                    myModal.show();
+                </script>
+                @endif
         </div>
         </div>
 </div>
