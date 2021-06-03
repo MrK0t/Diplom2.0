@@ -60,4 +60,15 @@ class HomeController extends Controller
 
         return view('room', compact('room_data', 'category_data', 'type_data', 'buffer'));
     }
+
+    public function index_filtered($request)
+    {
+        dd($request);
+        $room_data = Room::get();
+        $category_data = RoomCategory::get();
+        $type_data = RoomTypes::get();
+        $cur_category_data = RoomCategoryRoom::get();
+
+        return view('index', compact('room_data', 'category_data', 'type_data', 'cur_category_data'));
+    }
 }

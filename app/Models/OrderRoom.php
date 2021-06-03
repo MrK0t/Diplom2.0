@@ -9,6 +9,14 @@ class OrderRoom extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'roomId',
+        'userId',
+        'sDate',
+        'fDate',
+    ];
+    public $timestamps = true;
+
     public function user()
     {
         return $this->belongsTo(User::class, 'userId', 'id');

@@ -28,18 +28,28 @@ home
                 </div>
                 
                 <!-- filter form -->
-                <div class="row gy-3">
-                    <div class="col-md-6 col-sm-12 text-md-end">
-                        <input class = "form-control" placeholder="Минимальная цена">
+                <form method="POST" action="{{route('index.filtered')}}">
+                    @csrf
+                    <div class="row gy-3">
+                        <div class="col-md-6 col-sm-12 text-md-end">
+                            <input id="minPrice" name="minPrice" type="integer" class = "form-control @error('sDate') is-invalid @enderror" placeholder="Минимальная цена">
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <input id="maxPrice" name="maxPrice" type="integer" class = "form-control" placeholder="Максимальная цена">
+                        </div>
+                        <div class="col-md-6 col-sm-12 text-md-right ">
+                            <label>Дата прибытия</label>
+                            <input id="Sdate" type="date" placeholder="Arrivel date"class="form-control @error('sDate') is-invalid @enderror" name="sDate" required autocomplete="sDate">
+                        </div>
+                        <div class="col-md-6 col-sm-12 ">
+                            <label>Дата выселения</label>
+                            <input id="fDate" type="date" placeholder="End date"class="form-control @error('fDate') is-invalid @enderror" name="fDate" required autocomplete="fDate">
+                        </div>
+                        <div class="row mx-1 py-3" style="padding:8 12; padding-right: 20px;">
+                            <button type="submit" class="btn btn-warning" >Применить фильтры</button>
+                        </div>
                     </div>
-                    <div class="col-md-6 col-sm-12">
-                        <input class = "form-control" placeholder="Максимальная цена">
-                    </div>
-                    <div class="row mx-1 py-3" style="padding:8 12; padding-right: 20px;">
-                        <button type="button" class="btn btn-warning" >Применить фильтры</button>
-                    </div>
-                    
-                </div>
+                </form>
             </div>
             </div>
         </div>

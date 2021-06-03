@@ -18,21 +18,35 @@ room
                 
             </div>
 
-            <!-- filter form -->
+            <!-- filter form ADD ORDER!-->
+            @guest
+                <form method="GET" action="{{route('login')}}">
+            @endguest
+            @auth
+                <form method="POST" action="{{route('orders.store')}}">
+            @endauth
+            @csrf
             <div class="row gy-2">
-                <div class="col-md-6 col-sm-12 text-md-right ">
-                    <label>Дата прибытия</label>
-                    <input id="sdate" type="date" placeholder="Arrivel date"class="form-control @error('sdate') is-invalid @enderror" name="sdate" required autocomplete="sdate" v-model="sdate"t>
-                </div>
-                <div class="col-md-6 col-sm-12 ">
-                    <label>Дата выселения</label>
-                    <input id="sdate" type="date" placeholder="End date"class="form-control @error('fdate') is-invalid @enderror" name="fdate" required autocomplete="fdate" v-model="fdate"t>
-                </div>
-
-                <form method="POST" action="" class="row mx-1 py-3" style="padding:8 12; padding-right: 20px;">
-                    <button type="button" class="btn btn-warning">Забронировать номер</button>
-                </form>
+                    <div class="col-md-6 col-sm-12 text-md-right ">
+                        <input id="roomId" type="hidden" name="roomId" value="{{$room_data[0]['id']}}">
+                        <input id="userId" type="hidden" name="userId" value="{{Auth::user()->id}}">
+                        <label>Дата прибытия</label>
+                        <input id="Sdate" type="date" placeholder="Arrivel date"class="form-control @error('sDate') is-invalid @enderror" name="sDate" required autocomplete="sDate">
+                    </div>
+                    <div class="col-md-6 col-sm-12 ">
+                        <label>Дата выселения</label>
+                        <input id="fDate" type="date" placeholder="End date"class="form-control @error('fDate') is-invalid @enderror" name="fDate" required autocomplete="fDate">
+                    </div>
+                    <div class="row  mx-1 py-3" style="padding:8 12; padding-right: 20px;">
+                        <button type="submit" class="btn btn-warning"@guest data-bs-toggle="tooltip" data-bs-placement="bottom" title="Необходима авторизация"@endguest>Забронировать номер</button>
+                    </div>
             </div>
+            </form>
+            @if($errors->any())
+            @foreach ($errors->all() as $e)
+                {{$e}}
+            @endforeach
+            @endif
         </div>
         </div>
 </div>

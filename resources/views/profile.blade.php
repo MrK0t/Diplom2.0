@@ -188,15 +188,18 @@ profile
                             
                             </ul>
                             
-
-                            <div class="card-body">
-                                <div class="row" style="padding:8 12;">
-                                    <button type="button" class="btn btn-outline-primary" onclick="location.href='{{ route('index.show', $room->id)}}'">Перейти к номеру</button>
+                            <form method="POST" action="{{ route('orders.destroy', $order->id)}}">
+                                @csrf
+                                @method('DELETE')
+                                <div class="card-body">
+                                    <div class="row" style="padding:8 12;">
+                                        <button type="button" class="btn btn-outline-primary" onclick="location.href='{{ route('index.show', $room->id)}}'">Перейти к номеру</button>
+                                    </div>
+                                    <div class="row" style="padding:8 12;">
+                                        <button type="delete" class="btn btn-danger my-3">Отменить резерв</button>
+                                    </div>
                                 </div>
-                                <div class="row" style="padding:8 12;">
-                                    <button type="button" class="btn btn-danger my-3" onclick="">Отменить резерв</button>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                         </div>
                     @endif

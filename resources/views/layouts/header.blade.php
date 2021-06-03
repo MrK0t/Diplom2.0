@@ -58,7 +58,7 @@
                         </ul>
                     </li>
                     @endif
-                    <a class="nav-link text-light" href="{{ route('profile')}}">Профиль</a>
+                    <a class="nav-link text-light" href="{{ route('orders.index')}}">Профиль</a>
                 @endauth
                 @guest
                     <a class="nav-link text-light" href="{{ route('login')}}">Вход</a>
