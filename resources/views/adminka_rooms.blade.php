@@ -31,9 +31,9 @@
                             <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('Тип') }}</label>
                             <div class="col-md-6">
                                 <select class="form-select" aria-label="Default select example" name="roomTypeId">
-                                    <option selected>Значение</option>
+                                    <!-- <option selected>Значение</option> -->
                                         @foreach ($type_data as $type)
-                                            <option value=''>{{$type->id}}</option>
+                                            <option value='{{$type->id}}'>{{$type->name}}</option>
                                         @endforeach
                                 </select>
                             </div>
@@ -43,7 +43,7 @@
                             <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('Номер корпуса') }}</label>
                             <div class="col-md-6">
                                 <select class="form-select" aria-label="Default select example" name="buildingId">
-                                    <option selected>Значение</option>
+                                    <!-- <option selected>Значение</option> -->
                                         @foreach ($building_data as $building)
                                             <option value='{{$building->id}}'>{{$building->name}}</option>
                                         @endforeach
@@ -117,7 +117,30 @@
                             </div>
                         </div>
                     </form>
-                    
+                @if($errors->any())
+                <!-- Modal -->
+                    <div class="modal fade" id="errors" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-muted" id="exampleModalLabel">Ошибки при вводе данных</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                @foreach ($errors->all() as $e)
+                                    <p>{{$e}}</p>
+                                    <br>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                <script> 
+                    var myModal = new bootstrap.Modal(document.getElementById('errors')) 
+                    myModal.show();
+                </script>
+                @endif
                     <!-- ITEMS LIST -->
                     <hr>
                     <div id="body_main" class = "body_main row gx-5 gy-5">

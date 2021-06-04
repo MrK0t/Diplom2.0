@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
 use App\Models\RoomTypes;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class RoomTypeController extends Controller
      */
     public function index()
     {
-        $type_data = RoomTypes::get();
+        $type_data = RoomTypes::where('default', 0)->get();
         return view('adminka_types', compact('type_data'));
     }
 
@@ -97,6 +98,17 @@ class RoomTypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $type_data = RoomTypes::where('id', $id)->first();
+
+        if($type_data != null)
+        {
+            $updated_data = [
+                "roomTypeId" => 1,
+            ];
+            Room::where('roomTypeId', $id)->update($updated_data);
+            
+            $type_data->delete();
+        }
+        return redirect(route('types.index'));
     }
 }

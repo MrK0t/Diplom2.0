@@ -23,6 +23,11 @@ class DatabaseSeeder extends Seeder
             'address' => Str::random(51).'Street',
             'default' => 1,
             ]);
+        DB::table('buildings')->insert([
+            'name' => '1a',
+            'address' => Str::random(11).'Street',
+            'default' => 0,
+            ]);
         for($i = 1; $i <= 3; $i++)
         {
             DB::table('buildings')->insert([

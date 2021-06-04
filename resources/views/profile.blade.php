@@ -187,44 +187,42 @@ profile
                     @if ($order->roomId == $room->id)
                         <div id="obj"class = "obj col-md-6">
                             <div class = "shadow">
-                                <h2 id ="w">{{$room->roomType->name}}</h2>
+                                <h2 id ="w">Номер: {{$room->roomNumber}} - {{$room->roomType->name}}</h2>
                             </div>
                         <div class="card">
-                            <div class="card-img">
-                            <img class="" src="{{$room->image}}">
-                            </div>
+                            <!-- <div class="card-img"> -->
+                            <img class="" src="{{$room->image}}" style="max-height: 400px;">
+                            <!-- </div> -->
                             <div class="card-body">
-                            <h5 class="card-title">Описание:</h5>
-                            <p class="card-text">{{$room->description}}</p>
+
+                            <h5 class="card-title">Категории:</h5>
+                             @php $cat_out=[]; @endphp
+                                    
+                                    @foreach ($cur_category_data as $cur_category)
+                                        @if ($cur_category->roomsId == $room->id)
+                                            @foreach ($category_data as $category)
+                                                @if ($category->id == $cur_category->roomCategoryId)
+
+                                                    @php 
+                                                        array_push($cat_out, $category->name);
+                                                    @endphp
+
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    @endforeach
+
+                                    {{implode (', ', $cat_out)}}
+                            <hr>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Описание: {{$room->description}}</li>
+                                    <li class="list-group-item">Корпус: {{$room->building->name}}</li>
+                                    <li class="list-group-item">Дата прибытия: {{$order->sDate}}</li>
+                                    <li class="list-group-item">Дата выселения: {{$order->fDate}}</li>
+                                    <li class="list-group-item">Цена за сутки: {{$room->price}}</li>
+                                    
+                                </ul>
                             </div>
-
-                            <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Категории: 
-                                @php $cat_out=[]; @endphp
-                                
-                                @foreach ($cur_category_data as $cur_category)
-                                    @if ($cur_category->roomsId == $room->id)
-                                        @foreach ($category_data as $category)
-                                            @if ($category->id == $cur_category->roomCategoryId)
-
-                                                @php 
-                                                    array_push($cat_out, $category->name);
-                                                @endphp
-
-                                            @endif
-                                        @endforeach
-                                    @endif
-                                @endforeach
-
-                                {{implode (', ', $cat_out)}}
-                            </li>
-                            <li class="list-group-item">Корпус: {{$room->building->name}}</li>
-                            <li class="list-group-item">Номер комнаты: {{$room->roomNumber}}</li>
-                            <li class="list-group-item">Дата прибытия: {{$order->sDate}}</li>
-                            <li class="list-group-item">Дата выселения: {{$order->fDate}}</li>
-                            <li class="list-group-item">Цена за сутки: {{$room->price}}</li>
-                            
-                            </ul>
                             
                             <form method="POST" action="{{ route('orders.destroy', $order->id)}}">
                                 @csrf

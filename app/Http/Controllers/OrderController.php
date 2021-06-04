@@ -132,14 +132,10 @@ class OrderController extends Controller
                 
                 $err_interface = new MessageBag();
                 $err_interface->add('test', 'Room was already reserved from '.$sReserv.' to '.$fReserv.'.');
-                // dd($err_interface);
                 
                 $err = new ViewErrorBag();
                 $err->__set('order_error', $err_interface );
-                // dd($err);
-                //  dd($errors);
                 return redirect()->back()->withErrors($err);
-                // return redirect(route('index.show', $request_after['roomId']));
             }
             else
             {

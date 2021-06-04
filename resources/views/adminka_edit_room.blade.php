@@ -128,7 +128,7 @@
                                             {{ __('Изменить') }}
                                         </button>
                                     </form>
-                                    @if($errors->any())
+                @if($errors->any())
                 <!-- Modal -->
                     <div class="modal fade" id="errors" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
                     <div class="modal-dialog">
@@ -153,13 +153,14 @@
                 </script>
                 @endif
                                    
-                                    <form method="POST" action="{{ route('login') }}">
-                                    <button type="submit" class="btn btn-danger my-2">
-                                        <div class="mx-2">
-                                            {{ __('Удалить') }}
-                                        </div>
-                                    </button>
-                                    </form>
+                            <form method="post" action="{{route('rooms.destroy', $room_data[0]['id'])}}">
+                                @method('delete')
+                                @csrf
+                                <button type="delete" class="btn btn-danger my-2">
+                                <div class="mx-2">
+                                    {{ __('Удалить') }}
+                                </div>
+                            </form>
                             </div>
                         </div>
                     </div>

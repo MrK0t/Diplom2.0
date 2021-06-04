@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Building;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class BuildingController extends Controller
@@ -60,9 +61,14 @@ class BuildingController extends Controller
     public function destroy($id)
     {
         $building_data = Building::where('id', $id)->first();
+
         if($building_data != null)
         {
-            // Building::delete($building_data);
+            $updated_data = [
+                "buildingId" => 1,
+            ];
+            Room::where('buildingId', $id)->update($updated_data);
+            
             $building_data->delete();
         }
         return redirect(route('buildings.index'));

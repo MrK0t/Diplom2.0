@@ -38,11 +38,14 @@
                                         {{ __('Изменить') }}
                                     </button>
                         </form>
-                                    <button type="submit" class="btn btn-danger my-2">
-                                    <div class="mx-2">
-                                        {{ __('Удалить') }}
-                                    </div>
-                                    </button>
+                                            <form method="post" action="{{route('types.destroy', $type_data[0]['id'])}}">
+                                                @method('delete')
+                                                @csrf
+                                                <button type="delete" class="btn btn-danger my-2">
+                                                <div class="mx-2">
+                                                    {{ __('Удалить') }}
+                                                </div>
+                                            </form>
                                 </div>
                                 </div>
                             </div>

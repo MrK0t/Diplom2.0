@@ -77,12 +77,12 @@ home
             @foreach($room_data as $room)
             <div id="obj"class = "obj col-md-6">
                 <div class = "shadow">
-                    <h2 id ="w">{{$room->roomType->name}}</h2>
+                    <h2 id ="w">Номер: {{$room->roomNumber}} - {{$room->roomType->name}}</h2>
                 </div>
             <div class="card">
-                <div class="card-img">
-                <img class="" src="{{$room->image}}">
-                </div>
+                <!-- <div class="card-img"> -->
+                <img class="" src="{{$room->image}}" style="max-height: 400px;">
+                <!-- </div> -->
                 <div class="card-body">
                 <h5 class="card-title">Описание:</h5>
                 <p class="card-text">{{$room->description}}</p>
