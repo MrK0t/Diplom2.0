@@ -19,6 +19,13 @@ class RoomController extends Controller
         $type_data = RoomTypes::get();
         $cur_category_data = RoomCategoryRoom::get();
         $building_data = Building::get();
+        foreach($room_data as $key =>$room)
+        {
+            if($room['isActive'] == 0)
+            {
+                unset($room_data[$key]);
+            }
+        }
 
         return view('adminka_rooms', compact('room_data', 'category_data', 'type_data', 'cur_category_data', 'building_data'));
     }
@@ -81,36 +88,65 @@ class RoomController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request_after = $request->validate(
-            [
-                'buildingId'=>'integer|required',
-                'roomTypeId'=>'integer|required',
-                'roomNumber'=>'string|required|max:4',
-                'image'=>'string|required|max:300',
-                'description'=>'string|required|max:300',
-                'price'=>'integer|required',
-                
-                'categoryId'=>'required'
-            ]
-        );
-        $category_data = array_pop($request_after); 
-
+        $request_after = '';
+        if($request['categoryId'])
+        {
+            $request_after = $request->validate(
+                [
+                    'buildingId'=>'integer|required',
+                    'roomTypeId'=>'integer|required',
+                    'roomNumber'=>'string|required|max:4',
+                    'image'=>'string|required|max:300',
+                    'description'=>'string|required|max:300',
+                    'price'=>'integer|required',
+                    
+                    'categoryId'=>'nullable'
+                ]
+            );
+            $mas=[];
+            $category_data = array_pop($request_after); 
+            foreach($category_data as $category)
+            {
+                $mas['roomsId'] = $id;
+                $mas['roomCategoryId'] = intval($category);
+                // dd($mas);
+                RoomCategoryRoom::create($mas);
+            }
+            }
+        else
+        {
+            $request_after = $request->validate(
+                [
+                    'buildingId'=>'integer|required',
+                    'roomTypeId'=>'integer|required',
+                    'roomNumber'=>'string|required|max:4',
+                    'image'=>'string|required|max:300',
+                    'description'=>'string|required|max:300',
+                    'price'=>'integer|required',
+                    
+                ]
+            );
+        }
+        // dd('bad');
+        
         Room::where('id', $id)->update($request_after);
         RoomCategoryRoom::where('roomsId', $id)->delete();
-
-        $mas=[];
-        foreach($category_data as $category)
-        {
-            $mas['roomsId'] = $id;
-            $mas['roomCategoryId'] = intval($category);
-            // dd($mas);
-            RoomCategoryRoom::create($mas);
-        }
+        
+        
         return redirect(route('rooms.index'));
     }
 
     public function destroy($id)
     {
-        // 
+        $room_data = Room::where('id', $id)->first();
+        $room_data['isActive'] = 0;
+        
+        $updated_data = [
+            "isActive" => $room_data['isActive'],
+            
+        ];
+        Room::where('id', $id)->update($updated_data);
+        return redirect(route('rooms.index'));
+
     }
 }

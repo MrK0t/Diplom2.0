@@ -9,7 +9,7 @@ class BuildingController extends Controller
 {
     public function index()
     {
-        $building_data = Building::get();
+        $building_data = Building::where('default', 0)->get();
         return view('adminka_buildings', compact('building_data'));
     }
 
@@ -64,7 +64,6 @@ class BuildingController extends Controller
         {
             // Building::delete($building_data);
             $building_data->delete();
-
         }
         return redirect(route('buildings.index'));
 

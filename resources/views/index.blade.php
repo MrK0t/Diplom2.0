@@ -44,8 +44,6 @@ home
                     </div>
                 </form>
                 @if($errors->any())
-
-                
                 <!-- Modal -->
                     <div class="modal fade" id="errors" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
                     <div class="modal-dialog">

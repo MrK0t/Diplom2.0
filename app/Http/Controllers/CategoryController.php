@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\RoomCategory;
+use App\Models\RoomCategoryRoom;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -100,6 +101,14 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // dd($id);
+        $category_data = RoomCategory::where('id', $id)->first();
+        if($category_data != null)
+        {
+            RoomCategoryRoom::where('roomCategoryId', $id)->delete();
+            $category_data->delete();
+
+        }
+        return redirect(route('categories.index'));
     }
 }

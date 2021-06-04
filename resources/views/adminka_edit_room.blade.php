@@ -128,6 +128,30 @@
                                             {{ __('Изменить') }}
                                         </button>
                                     </form>
+                                    @if($errors->any())
+                <!-- Modal -->
+                    <div class="modal fade" id="errors" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-muted" id="exampleModalLabel">Ошибки при вводе данных</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                @foreach ($errors->all() as $e)
+                                    <p>{{$e}}</p>
+                                    <br>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                <script> 
+                    var myModal = new bootstrap.Modal(document.getElementById('errors')) 
+                    myModal.show();
+                </script>
+                @endif
                                    
                                     <form method="POST" action="{{ route('login') }}">
                                     <button type="submit" class="btn btn-danger my-2">

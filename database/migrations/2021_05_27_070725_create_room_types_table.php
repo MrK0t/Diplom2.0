@@ -16,6 +16,7 @@ class CreateRoomTypesTable extends Migration
         Schema::create('room_types', function (Blueprint $table) {
             $table->id();
             $table->string('name', 51)->unique();
+            $table->boolean('default')->default('0');
         });
     }
 

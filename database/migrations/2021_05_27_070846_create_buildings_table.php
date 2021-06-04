@@ -17,6 +17,7 @@ class CreateBuildingsTable extends Migration
             $table->id();
             $table->string('name', 5)->unique();
             $table->string('address', 61);
+            $table->boolean('default')->default('0');
         });
     }
 

@@ -20,7 +20,9 @@ profile
                             </button>
                             
                             <div class="collapse navbar-collapse my-3" id="navbarSupportedContent">
-                                <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
+                                <form class="d-flex my-1" method="POST" action="{{ route('orders.update', Auth::user()->id) }}">
+                                @csrf
+                                @method('PATCH')
                                     <input id="name" type="text" class="form-control my-1 @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Имя пользователя">
                                     <button class="btn btn-primary mx-2" type="submit">Изменить</button>
                                     @error('name')
@@ -29,7 +31,9 @@ profile
                                     </span>
                                     @enderror
                                 </form>
-                                <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
+                                <form class="d-flex my-1" method="POST" action="{{ route('orders.update', Auth::user()->id) }}">
+                                @csrf
+                                @method('PATCH')
                                     <input id="firstName" type="text" class="form-control my-1 @error('firstName') is-invalid @enderror" name="firstName" value="{{ old('firstName') }}" required autocomplete="firstName" placeholder="Имя">
                                     <button class="btn btn-primary mx-2" type="submit">Изменить</button>
                                     @error('firstName')
@@ -38,7 +42,9 @@ profile
                                     </span>
                                     @enderror
                                 </form>
-                                <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
+                                <form class="d-flex my-1" method="POST" action="{{ route('orders.update', Auth::user()->id) }}">
+                                @csrf
+                                @method('PATCH')
                                     <input id="lastName" type="text" class="form-control my-1 @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName" placeholder="Фамилия">
                                     <button class="btn btn-primary mx-2" type="submit">Изменить</button>
                                     @error('lastName')
@@ -47,7 +53,9 @@ profile
                                     </span>
                                     @enderror
                                 </form>
-                                <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
+                                <form class="d-flex my-1" method="POST" action="{{ route('orders.update', Auth::user()->id) }}">
+                                @csrf
+                                @method('PATCH')
                                     <input id="patronimic" type="text" class="form-control my-1 @error('patronimic') is-invalid @enderror" name="patronimic" value="{{ old('patronimic') }}" required autocomplete="patronimic" placeholder="Отчество">
                                     <button class="btn btn-primary mx-2" type="submit">Изменить</button>
                                     @error('patronimic')
@@ -58,7 +66,9 @@ profile
                                 </form>
 
                                 <!-- edition email&pass -->
-                                    <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
+                                    <form class="d-flex my-1" method="POST" action="{{ route('orders.update', Auth::user()->id) }}">
+                                    @csrf
+                                    @method('PATCH')
                                         <div class="row justify-content-center">
                                             <div class="col-md-5 col-sm-12">
                                                 <input id="email" type="email" class="form-control my-1 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
@@ -77,10 +87,12 @@ profile
                                         </div>
                                     </form> 
 
-                                    <form class="d-flex my-1" method="POST" action="{{ route('register') }}">
+                                    <form class="d-flex my-1" method="POST" action="{{ route('orders.update', Auth::user()->id) }}">
+                                    @csrf
+                                    @method('PATCH')
                                         <div class="row justify-content-center">
                                             <div class="col-md-5 col-sm-12">
-                                                <input id="password" type="text" class="form-control my-1 @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password" placeholder="Пароль">
+                                                <input id="password" type="password" class="form-control my-1 @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password" placeholder="Пароль">
                                                 @error('password')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -88,13 +100,15 @@ profile
                                                 @enderror
                                             </div>
                                             <div class="col-md-5 col-sm-12">
-                                                <input id="password-confirm" type="password" class="form-control my-1" name="password-confirm" required autocomplete="new-password" placeholder="Подтвердите пароль">
+                                                <input id="password-confirm" type="password" class="form-control my-1" name="password_confirmation" required autocomplete="new-password" placeholder="Подтвердите пароль">
                                             </div>
                                             <div class="col-md-2 col-sm-12 my-1">
                                                 <button class="btn btn-primary" type="submit">Изменить</button>
                                             </div>
                                         </div>
                                     </form> 
+
+                
                             </div>   
                         </div>   
                     </nav>
@@ -102,36 +116,60 @@ profile
                     <div class="seach_block">
                         <p id = "w_b" class="text-center" style="margin:auto">Отслеживайте свои забронированные номера</p>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 col-sm-12 text-md-end text-center ">
-                            
-                            <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">Сортировать по цене</label>
-                        </div>
-                        <div class="col-md-6 col-sm-12 text-md-start text-center">
-                            <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">Сортировать по имени</label>
-                        </div>
-                    </div>
+                    <hr>
+                    
                 </div>
                 
                 <!-- filter form -->
-                <div class="row gy-2">
-                    <div class="col-md-6 col-sm-12 text-md-end ">
-                        <input class = "form-control" placeholder="Максимальная цена">
-                        <label>Дата прибытия</label>
-                        <input id="sdate" type="date" placeholder="Arrivel date"class="form-control @error('sdate') is-invalid @enderror" name="sdate" required autocomplete="sdate" v-model="sdate"t>
+                <form method="GET" action="{{route('orders.index')}}">
+                    @csrf
+                    <div class="row gy-3">
+                        <div class="col-md-6 col-sm-12 text-md-end">
+                            <!-- <label>Макимальная цена</label> -->
+                            <input id="minPrice" name="minPrice" type="integer" class = "form-control"  placeholder="Минимальная цена" class="form-control @error('minPrice') is-invalid @enderror">
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <!-- <label>Минимальная цена</label> -->
+                            <input id="maxPrice" name="maxPrice" type="integer" class = "form-control" placeholder="Максимальная цена" class="form-control @error('maxPrice') is-invalid @enderror">
+                        </div>
+                        <div class="col-md-6 col-sm-12 text-md-right ">
+                            <label>Дата прибытия</label>
+                            <input id="sDate" type="date" placeholder="Arrivel date" class="form-control @error('sDate') is-invalid @enderror" name="sDate" autocomplete="sDate">
+                        </div>
+                        <div class="col-md-6 col-sm-12 ">
+                            <label>Дата выселения</label>
+                            <input id="fDate" type="date" placeholder="End date"class="form-control @error('fDate') is-invalid @enderror" name="fDate" autocomplete="fDate">
+                        </div>
+                        <div class="row mx-1 py-3" style="padding:8 12; padding-right: 20px;">
+                            <button type="submit" class="btn btn-warning" >Применить фильтры</button>
+                        </div>
                     </div>
-                    <div class="col-md-6 col-sm-12">
-                        <input class = "form-control" placeholder="Минимальная цена">
-                        <label>Дата выселения</label>
-                    <input id="sdate" type="date" placeholder="End date"class="form-control @error('fdate') is-invalid @enderror" name="fdate" required autocomplete="fdate" v-model="fdate"t>
+                </form>
+                <!-- Modal -->
+                @if($errors->any())
+
+                    <div class="modal fade" id="errors" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-muted" id="exampleModalLabel">Ошибки при вводе данных</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                @foreach ($errors->all() as $e)
+                                    <p>{{$e}}</p>
+                                    <br>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
-                    <div class="row mx-1 py-3" style="padding:8 12; padding-right: 20px;">
-                        <button type="button" class="btn btn-warning" >Применить фильтр</button>
                     </div>
-                    
-                </div>
+
+                <script> 
+                    var myModal = new bootstrap.Modal(document.getElementById('errors')) 
+                    myModal.show();
+                </script>
+                @endif
             </div>
             </div>
         </div>

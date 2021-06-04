@@ -33,7 +33,13 @@ class HomeController extends Controller
         $cur_category_data = RoomCategoryRoom::get();
         $order_data = OrderRoom::get();
         $room_data = Room::get();
-        
+        foreach($room_data as $key =>$room)
+        {
+            if($room['isActive'] == 0)
+            {
+                unset($room_data[$key]);
+            }
+        }
         
         if($request['sDate'] !== null || $request['fDate'] !== null)
         {

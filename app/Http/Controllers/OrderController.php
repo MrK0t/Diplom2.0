@@ -11,6 +11,7 @@ use App\Models\RoomTypes;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\ViewErrorBag;
 
@@ -21,7 +22,7 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $room_data = Room::get();
         $category_data = RoomCategory::get();
@@ -29,25 +30,75 @@ class OrderController extends Controller
         $cur_category_data = RoomCategoryRoom::get();
         $order_data = OrderRoom::get();
 
+        if($request['sDate'] !== null || $request['fDate'] !== null)
+        {
+            $request_after = $request->validate(
+                [
+                'sDate'=>'date|required',
+                'fDate'=>'date|required|after:'.'sDate',
+                ]
+            );
+                
+            $tmp_mass =[];
+            foreach($room_data as $key => $room)
+            {
+                foreach($order_data as $orders)
+                {
+                    if($room['id'] == $orders['roomId'])
+                    {
+                        if($request_after['sDate'] <= $orders['sDate'] && $request_after['fDate'] >= $orders['fDate']) 
+                        {
+                            array_push($tmp_mass, $room_data[$key]);
+                        }
+                    }
+                }
+            } 
+            $room_data = $tmp_mass;
+        }
+        
+        if($request['minPrice'] !== null)
+        {
+            $request_after = $request->validate(
+                [
+                    'minPrice'=>'integer',
+                    ]
+                ); 
+                foreach($room_data as $key => $room)
+                {
+                    if($room['price'] <= $request['minPrice'])
+                    {
+                    // dd($key, $room, $room_data);
+                    unset($room_data[$key]) ;
+                }
+            }
+            
+        }
+
+        if($request['maxPrice'] !== null)
+        {
+            $request_after = $request->validate(
+                [
+                    'maxPrice'=>'integer',
+                ]
+            );  
+            foreach($room_data as $key => $room)
+                {
+                    if($room['price'] >= $request['maxPrice'])
+                    {
+                    // dd($key, $room, $room_data);
+                    unset($room_data[$key]) ;
+                }  
+            }
+        }
+
         return view('profile', compact('order_data','room_data', 'category_data', 'type_data', 'cur_category_data'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $request_after = $request->validate(
@@ -110,35 +161,81 @@ class OrderController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        
-        //
+        if($request['name'])
+        {
+            $request_after = $request->validate(
+                [
+                    'name'=>'string|required|unique:users,name|max:30',
+                    ]
+                );
+            
+            User::where('id', $id)->update($request_after);
+            // dd($id, $request_after['name']);
+        }
+        if($request['email'])
+        {
+            $request_after = $request->validate(
+                [
+                    'email'=>'email|required|unique:users,email|max:50|confirmed',
+                    ]
+                );
+            
+            User::where('id', $id)->update($request_after);
+        }
+        if($request['firstName'])
+        {
+            $request_after = $request->validate(
+                [
+                    'firstName'=>'string|required|max:50',
+                    ]
+                );
+            
+            User::where('id', $id)->update($request_after);
+        }
+        if($request['lastName'])
+        {
+            $request_after = $request->validate(
+                [
+                    'lastName'=>'string|required|max:50',
+                    ]
+                );
+            
+            User::where('id', $id)->update($request_after);
+        }
+        if($request['patronimic'])
+        {
+            $request_after = $request->validate(
+                [
+                    'patronimic'=>'string|required|max:50',
+                    ]
+                );
+            
+            User::where('id', $id)->update($request_after);
+        }
+        if($request['password'])
+        {
+            $request_after = $request->validate(
+                [
+                    'password'=>'string|required|confirmed',
+                    ]
+                );
+            $tmp = $request_after['password'];
+            $request_after['password'] = Hash::make($tmp);
+            User::where('id', $id)->update($request_after);
+        }
+        return redirect(route('orders.index'));
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function destroy($id)
     {
         OrderRoom::where('id', intval($id))->delete();
