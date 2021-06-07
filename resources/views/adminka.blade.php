@@ -20,7 +20,7 @@ adminka
                 <button class="btn btn-outline-light mx-3" onclick="location.href='{{ route('categories.index')}}'">Категории номеров</button>
                 <button class="btn btn-outline-light mx-3" onclick="location.href='{{ route('types.index')}}'">Типы номеров</button>
                 <button class="btn btn-outline-light mx-3" onclick="location.href='{{ route('buildings.index')}}'">Корпуса</button>
-                <button class="btn btn-outline-light mx-3" onclick="location.href='{{ route('profile.index')}}'">Забронированные номера</button>
+                <button class="btn btn-outline-light mx-3" onclick="location.href='{{ route('orders.index')}}'">Забронированные номера</button>
             </div>   
         </div>   
     </nav>
