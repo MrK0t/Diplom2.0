@@ -23,7 +23,7 @@ room
                 <form method="GET" action="{{route('login')}}">
             @endguest
             @auth
-                <form method="POST" action="{{route('orders.store')}}">
+                <form method="POST" action="{{route('profile.store')}}">
             @endauth
             @csrf
             <div class="row gy-2">

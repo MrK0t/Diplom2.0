@@ -55,10 +55,11 @@
                             <li><a class="dropdown-item" href="{{ route('categories.index')}}">Категории</a></li>
                             <li><a class="dropdown-item" href="{{ route('types.index')}}">Типы</a></li>
                             <li><a class="dropdown-item" href="{{ route('buildings.index')}}">Корпуса</a></li>
+                            <li><a class="dropdown-item" href="{{ route('orders.index')}}">Бронирования</a></li>
                         </ul>
                     </li>
                     @endif
-                    <a class="nav-link text-light" href="{{ route('orders.index')}}">Профиль</a>
+                    <a class="nav-link text-light" href="{{ route('profile.index')}}">Профиль</a>
                 @endauth
                 @guest
                     <a class="nav-link text-light" href="{{ route('login')}}">Вход</a>

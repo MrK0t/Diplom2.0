@@ -20,7 +20,7 @@ class CreateRoomsTable extends Migration
             $table->string('roomNumber', 5);
             $table->string('image', 301);
             $table->text('description', 301);
-            $table->integer('price');
+            $table->integer('price')->unsigned();
             $table->boolean('isActive')->default(1);
 
             $table->foreign('roomTypeId')->references('id')->on('room_types');

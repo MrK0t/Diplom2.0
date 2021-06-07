@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
+use App\Http\Controllers\Controller;
 use App\Models\OrderRoom;
 use App\Models\Room;
 use App\Models\RoomCategory;
@@ -10,12 +10,11 @@ use App\Models\RoomCategoryRoom;
 use App\Models\RoomTypes;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\ViewErrorBag;
 
-class OrderController extends Controller
+class Profile extends Controller
 {
     public function index(Request $request)
     {
@@ -24,7 +23,6 @@ class OrderController extends Controller
         $type_data = RoomTypes::get();
         $cur_category_data = RoomCategoryRoom::get();
         $order_data = OrderRoom::get();
-        $user_data = User::get();
 
         if($request['sDate'] !== null || $request['fDate'] !== null)
         {
@@ -87,7 +85,7 @@ class OrderController extends Controller
             }
         }
 
-        return view('adminka_orders', compact('order_data','room_data', 'category_data', 'type_data', 'cur_category_data', 'user_data'));
+        return view('profile', compact('order_data','room_data', 'category_data', 'type_data', 'cur_category_data'));
     }
     public function create()
     {
@@ -233,5 +231,4 @@ class OrderController extends Controller
         OrderRoom::where('id', intval($id))->delete();
         return redirect(route('orders.index'));
     }
-    
 }
