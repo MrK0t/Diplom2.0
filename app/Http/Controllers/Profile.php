@@ -100,10 +100,8 @@ class Profile extends Controller
                 'roomId'=>'required',
                 'userId'=>'required',
                 'sDate'=>'date|required|after_or_equal:'.date('Y-m-d'),
-                'fDate'=>'date|required|after:'.'sDate',
-                ]
+                'fDate'=>'date|required|after:'.'sDate',]
             );
-
         $orders_data = OrderRoom::where('roomId', intval($request_after['roomId']))->get();
         if(!empty($orders_data[0]))
         {
@@ -123,10 +121,8 @@ class Profile extends Controller
             }
             if($have_errors)
             {
-                
                 $err_interface = new MessageBag();
                 $err_interface->add('test', 'Room was already reserved from '.$sReserv.' to '.$fReserv.'.');
-                
                 $err = new ViewErrorBag();
                 $err->__set('order_error', $err_interface );
                 return redirect()->back()->withErrors($err);
@@ -134,14 +130,13 @@ class Profile extends Controller
             else
             {
             OrderRoom::create($request_after);
-            return redirect(route('orders.index'));
+            return redirect(route('profile.index'));
             }
         }
         else
         {
-            // dd('all cool');   
             OrderRoom::create($request_after);
-            return redirect(route('orders.index'));
+            return redirect(route('profile.index'));
         }
     }
 
@@ -222,13 +217,13 @@ class Profile extends Controller
             $request_after['password'] = Hash::make($tmp);
             User::where('id', $id)->update($request_after);
         }
-        return redirect(route('orders.index'));
+        return redirect(route('profile.index'));
     }
 
 
     public function destroy($id)
     {
         OrderRoom::where('id', intval($id))->delete();
-        return redirect(route('orders.index'));
+        return redirect(route('profile.index'));
     }
 }

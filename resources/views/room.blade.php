@@ -11,13 +11,10 @@ room
         <div class="seach_border text-light">
             <div class="seach_block">
                 <h3 id = "w_b" class="text-center" style="margin:auto; color:white">Номер</h3>
-
                 <div class="seach_block">
                 <p id = "w_b" class="text-center" style="margin:auto">Бронируете номера в лучшей гостинице</p>
                 </div>
-                
             </div>
-
             <!-- filter form ADD ORDER!-->
             @guest
                 <form method="GET" action="{{route('login')}}">

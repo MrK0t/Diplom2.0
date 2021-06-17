@@ -93,7 +93,7 @@ class DatabaseSeeder extends Seeder
         for($i = 0; $i < 10; $i++)
         {
             DB::table('rooms')->insert([
-                'roomTypeId' => random_int(1, 5),
+                'roomTypeId' => random_int(2, 5),
                 'buildingId' => random_int(2, 4),
                 'roomNumber' => random_int(2, 4),
                 'image' => $rooms_img[$i],

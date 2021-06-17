@@ -26,67 +26,6 @@ class OrderController extends Controller
         $order_data = OrderRoom::get();
         $user_data = User::get();
 
-        if($request['sDate'] !== null || $request['fDate'] !== null)
-        {
-            $request_after = $request->validate(
-                [
-                'sDate'=>'date|required',
-                'fDate'=>'date|required|after:'.'sDate',
-                ]
-            );
-                
-            $tmp_mass =[];
-            foreach($room_data as $key => $room)
-            {
-                foreach($order_data as $orders)
-                {
-                    if($room['id'] == $orders['roomId'])
-                    {
-                        if($request_after['sDate'] <= $orders['sDate'] && $request_after['fDate'] >= $orders['fDate']) 
-                        {
-                            array_push($tmp_mass, $room_data[$key]);
-                        }
-                    }
-                }
-            } 
-            $room_data = $tmp_mass;
-        }
-        
-        if($request['minPrice'] !== null)
-        {
-            $request_after = $request->validate(
-                [
-                    'minPrice'=>'integer',
-                    ]
-                ); 
-                foreach($room_data as $key => $room)
-                {
-                    if($room['price'] <= $request['minPrice'])
-                    {
-                    // dd($key, $room, $room_data);
-                    unset($room_data[$key]) ;
-                }
-            }
-            
-        }
-
-        if($request['maxPrice'] !== null)
-        {
-            $request_after = $request->validate(
-                [
-                    'maxPrice'=>'integer',
-                ]
-            );  
-            foreach($room_data as $key => $room)
-                {
-                    if($room['price'] >= $request['maxPrice'])
-                    {
-                    // dd($key, $room, $room_data);
-                    unset($room_data[$key]) ;
-                }  
-            }
-        }
-
         return view('adminka_orders', compact('order_data','room_data', 'category_data', 'type_data', 'cur_category_data', 'user_data'));
     }
     public function create()
